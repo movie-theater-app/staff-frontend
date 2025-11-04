@@ -1,0 +1,73 @@
+
+.page-container {
+  min-height: 100vh;
+  background-color: #0B1E35;
+  color: #EAF6FF;
+  margin: 0;
+}
+
+.staff-header {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #6DCFF6;
+  background: linear-gradient(to bottom, #08112E 0%, #0A2C48 45%, #16566F 70%, #58a4a9ff 100%);
+}
+
+.logo-section {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  
+  width: 100%;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.logo {
+  width: 110px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+  mask-image: linear-gradient(to right, black 70%, transparent 100%);
+}
+
+.logo-fade {
+  position: absolute;
+  top: 0;
+  right: 50px;
+  height: 100%;
+  width: 120px;
+  background: linear-gradient(to right, rgba(11, 30, 53, 1), rgba(11, 30, 53, 0));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.staff-main {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 5rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+  gap: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #3E7F88;
+  color: white;
+  font-size: 1rem;
+}
