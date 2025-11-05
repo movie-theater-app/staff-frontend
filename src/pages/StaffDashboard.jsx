@@ -1,20 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/north-star-logo.jpg";
 import "../CSS/StaffDashboard.css";
+import Navbar from "../components/Navbar";
 
 export default function StaffDashboard() {
   const user = { name: "Test-user" };
-   console.log(logo)
+  const navigate = useNavigate();
 
   return (
     <div className="page-container">
-      <header className="staff-header">
-        <div className="logo-section">
-          <img src={logo} alt="North Star logo" className="logo"/>
-          <h1 style={{marginTop:"3.5rem", marginLeft:"1rem"}}>North Star movie theater</h1>
-        </div>
-      </header>
-
+      <Navbar showLinks={false} />
       <main className="staff-main">
         <h1 >Welcome, {user.name}</h1>
         <h2 style={{marginTop: "5rem"}}>What would you like to do?</h2>
@@ -22,6 +18,9 @@ export default function StaffDashboard() {
         <div className="button-container">
           <button className="button">Add movie</button>
           <button className="button">Edit movie</button>
+          <button className="button" onClick={() => navigate("/add-theatre")}>
+            Add theatre
+          </button>
           <button className="button">Manage staff</button>
           <button className="button">Statistics</button>
         </div>
