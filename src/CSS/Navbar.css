@@ -1,0 +1,52 @@
+.staff-header {
+  display: flex;
+  align-items: flex-start;
+  padding: 0 0 0 3rem;
+  margin: 0;
+  color: white;
+  border-bottom: 1px solid #6DCFF6;
+  background: linear-gradient(to bottom, #08112E 0%, #0A2C48 45%, #16566F 70%, #58a4a9ff 100%);
+}
+
+.logo-section {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.logo {
+  width: 110px;
+  height: auto;
+  margin: 0;
+  padding: 0;
+/* left and right fade */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%);
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.logo-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.nav-links {
+    display: flex;
+    padding: 2rem;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+}
