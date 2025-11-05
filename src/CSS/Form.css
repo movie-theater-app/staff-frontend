@@ -1,0 +1,78 @@
+
+.add-theatre-form {
+  background-color: rgb(184, 244, 248); 
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: white;
+}
+
+.add-theatre-form h3 {
+  margin: 0.8rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field input {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.8rem;
+}
+
+.auditoriums-section {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  margin-top:1rem;
+}
+
+.auditoriums-section input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.8rem;
+}
+
+.btn, .btn-add-auditorium {
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #3E7F88;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+.btn-add-auditorium {
+    display: flex;
+    margin-left: auto;
+    margin-right: 0;
+    padding: 0.7rem;
+}
+
+.btn:hover, .btn-add-auditorium:hover {
+  background-color: #2f6267;
+}
+
+.btn-remove {
+  background-color: #e74c3c;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-remove:hover {
+  background-color: #c0392b;
+}
