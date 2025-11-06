@@ -76,3 +76,10 @@ h1 {
 .btn-remove:hover {
   background-color: #c0392b;
 }
+
+button:disabled,
+.disabled-btn {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #7caab0 !important;
+}

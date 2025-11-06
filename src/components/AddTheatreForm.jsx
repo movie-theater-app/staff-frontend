@@ -7,9 +7,18 @@ export default function AddTheatreForm({ onSubmit }) {
   const [theatre, setTheatre] = useState({
     name: "",
     address: "",
-    contact: "",
-    auditoriums: [{ name: "", size: "" }],
+    contact_information: "",
+    auditoriums: [{ name: "", seat_count: "" }],
   });
+
+  const resetForm = () => {
+    setTheatre({
+      name: "",
+      address: "",
+      contact_information: "",
+      auditoriums: [{ name: "", seat_count: "" }],
+    });
+  };
 
   // updated when user writes to input fields on main level
   const handleChange = (event) => {
@@ -27,7 +36,7 @@ export default function AddTheatreForm({ onSubmit }) {
   const addAuditorium = () => {
     setTheatre({
       ...theatre,
-      auditoriums: [...theatre.auditoriums, { name: "", size: "" }],
+      auditoriums: [...theatre.auditoriums, { name: "", seat_count: "" }],
     });
   };
   // deletes auditorium based on index
@@ -39,8 +48,18 @@ export default function AddTheatreForm({ onSubmit }) {
 
   const handleSubmit = (event) => {
     event.preventDefault(); // no page refresh
-    if (onSubmit) onSubmit(theatre);
+    if (onSubmit) onSubmit(theatre, resetForm);
   };
+
+  // Check that all required fields are filled
+  const isFormValid =
+    theatre.name.trim() !== "" &&
+    theatre.address.trim() !== "" &&
+    theatre.contact_information.trim() !== "" &&
+    theatre.auditoriums.length > 0 &&
+    theatre.auditoriums.every(
+      (auditorium) => auditorium.name.trim() !== "" && auditorium.seat_count.trim() !== ""
+    );
 
   return (
     <div className="add-theatre-form"> 
@@ -55,7 +74,7 @@ export default function AddTheatreForm({ onSubmit }) {
         </div>
         <div className="form-field">
             <h3>Contact information:</h3>
-            <input name="contact" placeholder="Contact number" value={theatre.contact} onChange={handleChange} />
+            <input name="contact_information" placeholder="Contact number" value={theatre.contact_information} onChange={handleChange} />
         </div>
       <h3>Auditoriums:</h3>
       {theatre.auditoriums.map((auditorium, index) => (
@@ -67,9 +86,9 @@ export default function AddTheatreForm({ onSubmit }) {
             onChange={(event) => handleAuditoriumChange(index, event)}
           />
           <input
-            name="size"
-            placeholder="Size"
-            value={auditorium.size}
+            name="seat_count"
+            placeholder="Seat capacity"
+            value={auditorium.seat_count}
             onChange={(event) => handleAuditoriumChange(index, event)}
           />
           {theatre.auditoriums.length > 1 && (
@@ -78,8 +97,9 @@ export default function AddTheatreForm({ onSubmit }) {
         </div>
       ))}
       <button type="button" className="btn-add-auditorium" onClick={addAuditorium}>+ Add auditorium</button>
+      <button type="submit" className="btn"  disabled={!isFormValid}>Save theatre</button>
     </form>
-    <button type="submit" className="btn">Save theatre</button>
+    
     </div> 
   );
 }
