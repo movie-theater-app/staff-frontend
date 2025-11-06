@@ -14,7 +14,7 @@ html, body {
 }
 .page-container {
   min-height: 100vh;
-  background-color: #0B1E35;
+  background: linear-gradient(180deg, #0E3753 0%, #0C1B3A 45%, #09102D 100%);
   color: #EAF6FF;
   margin: 0;
 }
@@ -42,4 +42,8 @@ html, body {
   background-color: #3E7F88;
   color: white;
   font-size: 1rem;
+}
+
+.button:hover {
+  background-color: #007d93;
 }
