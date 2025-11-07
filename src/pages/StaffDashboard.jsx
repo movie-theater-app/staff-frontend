@@ -16,7 +16,9 @@ export default function StaffDashboard() {
         <h2 style={{marginTop: "5rem"}}>What would you like to do?</h2>
 
         <div className="button-container">
-          <button className="button">Add movie</button>
+          <button className="button" onClick={() => navigate("/add-movie")}>
+              Add movie
+          </button>
           <button className="button">Edit movie</button>
           <button className="button" onClick={() => navigate("/add-theatre")}>
             Add theatre
