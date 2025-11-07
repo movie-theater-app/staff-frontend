@@ -1,6 +1,8 @@
 .staff-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
   padding: 0 0 0 3rem;
   margin: 0;
   color: white;
@@ -9,12 +11,38 @@
 }
 
 .logo-section {
-  position: relative;
   display: flex;
-  align-items: flex-start;
-  width: 100%;
-  justify-content: flex-start;
-  overflow: hidden;
+  align-items: center;
+  gap: 1rem; 
+  flex: 0 0 auto; 
+}
+.logo-section h1 {
+  padding-bottom: 2rem;
+}
+.nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: large;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links a {
+  color: white;   
+  text-decoration: none;
+  padding-bottom: 8px;
+}
+
+.nav-links a.active {
+  font-weight: bold; 
+  color: #58a4a9;
+}
+
+.nav-links a:hover{
+   border-bottom: 2px solid #16566F;
 }
 
 .logo {
@@ -41,12 +69,4 @@
   height: 100%;
   pointer-events: none;
   z-index: 2;
-}
-
-.nav-links {
-    display: flex;
-    padding: 2rem;
-    gap: 1.5rem;
-    align-items: center;
-    justify-content: center;
 }
