@@ -5,7 +5,7 @@ import "../CSS/Form.css";
 export default function AddTheatreForm({ onSubmit }) {
 // form field values are stored and updated, auditoriums stored as array of objects
   const [theatre, setTheatre] = useState({
-    name: "",
+    theatre_name: "",
     address: "",
     contact_information: "",
     auditoriums: [{ name: "", seat_count: "" }],
@@ -53,7 +53,7 @@ export default function AddTheatreForm({ onSubmit }) {
 
   // Check that all required fields are filled
   const isFormValid =
-    theatre.name.trim() !== "" &&
+    theatre.theatre_name.trim() !== "" &&
     theatre.address.trim() !== "" &&
     theatre.contact_information.trim() !== "" &&
     theatre.auditoriums.length > 0 &&
@@ -66,7 +66,7 @@ export default function AddTheatreForm({ onSubmit }) {
     <form onSubmit={handleSubmit}>
         <div className="form-field">
             <h3>Name:</h3>
-            <input name="name" placeholder="Theatre name" value={theatre.name} onChange={handleChange} />
+            <input name="theatre_name" placeholder="Theatre name" value={theatre.name} onChange={handleChange} />
         </div>
         <div className="form-field">
             <h3>Address:</h3>

@@ -5,7 +5,7 @@ export async function addTheatre(data) {
     const response = await fetch(`${BASE_URL}/theatres`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data), // data = name, address, contact_information
+      body: JSON.stringify(data), // data = theatre_name, address, contact_information
     });
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));

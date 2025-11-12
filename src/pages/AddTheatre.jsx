@@ -11,7 +11,7 @@ export default function AddTheatre() {
     try {
       // add theatre
       const createdTheatre = await addTheatre({
-        name: data.name,
+        theatre_name: data.theatre_name,
         address: data.address,
         contact_information: data.contact_information
       })
@@ -55,7 +55,7 @@ export default function AddTheatre() {
         {confirmation ? (
         <div className="confirmation">
           <h2>Theatre added successfully!</h2>
-          <h3>Name:</h3> <p><strong>{confirmation.theatre.name}</strong></p>
+          <h3>Name:</h3> <p><strong>{confirmation.theatre.theatre_name}</strong></p>
           <h3>Address:</h3> <p><strong>{confirmation.theatre.address}</strong></p>
           <h3>Contact (phone):</h3><p><strong>{confirmation.theatre.contact_information}</strong></p>
 
