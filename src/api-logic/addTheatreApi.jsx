@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001/api"; // backend address
+const BASE_URL = import.meta.env.VITE_BASE_URL;  // backend address
 
 export async function addTheatre(data) {
   try {

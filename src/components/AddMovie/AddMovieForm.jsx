@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import {importMovie} from "../api-logic/addMovieApi.jsx";
+import {importMovie} from "../../api-logic/moviesAPI.jsx";
+import {useNavigate} from "react-router-dom";
 
 function AddMovieForm({movieData}) {
 
@@ -11,19 +12,29 @@ function AddMovieForm({movieData}) {
     const [duration, setDuration] = React.useState('');
     const [poster, setPoster] = React.useState('');
     const [ageRating, setAgeRating] = React.useState('');
+
+    const navigate = useNavigate();
     async function formHandler(e) {
         e.preventDefault();
-        const movie = {
-            id,
-            title,
-            description,
-            trailer_url: trailer,
-            genre,
-            duration_minutes: duration,
-            poster_url: poster,
-            age_rating: ageRating };
-        await importMovie(movie);
-        console.log(movie);
+        try {
+            const movie = {
+                id,
+                title,
+                description,
+                trailer_url: trailer,
+                genre,
+                duration_minutes: duration,
+                poster_url: poster,
+                age_rating: ageRating };
+            const result = await importMovie(movie);
+            if (!result){
+                alert("Can not add this movie");
+                throw new Error('Failed to add movie');
+            }
+            navigate(`/movie/schedule/${movie.id}`);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     useEffect(() => {
@@ -72,6 +83,7 @@ function AddMovieForm({movieData}) {
                     placeholder="Enter genre"
                     value={genre}
                     onChange={e => setGenre(e.target.value)}
+                    required
                 />
 
                 <label htmlFor="ageRatingInput">Age Rating</label>
@@ -82,6 +94,7 @@ function AddMovieForm({movieData}) {
                     placeholder="Enter age rating"
                     value={ageRating}
                     onChange={e => setAgeRating(e.target.value)}
+                    required
                 />
 
                 <label htmlFor="durationInput">Duration (minutes)</label>
@@ -92,6 +105,7 @@ function AddMovieForm({movieData}) {
                     placeholder="Enter duration"
                     value={duration}
                     onChange={e => setDuration(e.target.value)}
+                    required
                 />
 
 
@@ -102,7 +116,8 @@ function AddMovieForm({movieData}) {
                     name="trailer"
                     placeholder="Enter the trailer URL"
                     value={trailer}
-                    onChange={e => setTrailer(e.target.value)}
+                    onChange={e => setTrailer(e.target.value)}ç
+                    required
                 />
 
 
@@ -115,6 +130,7 @@ function AddMovieForm({movieData}) {
                     placeholder="Enter poster URL"
                     value={poster}
                     onChange={e => setPoster(e.target.value)}
+                    required
                 />
 
 
