@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {getTMDBMovieByID} from "../../api-logic/moviesAPI.jsx"
 import {addMinutes} from "date-fns";
 import Select from "react-select";
+import {getAllTheaters, getAuditoriums, getTheaterById} from "../../api-logic/getTheatersApi.jsx";
 
 
 function AddSchedulingForm(props) {
@@ -15,29 +16,11 @@ function AddSchedulingForm(props) {
     const [endTime, setEndTime] = useState(new Date());
     const [duration, setDuration] = useState(0);
 
-
-    const cinemas = [
-        { value: 'Cinema Nova Oulu', label: 'Cinema Nova Oulu' },
-        { value: 'Kino Baltic Turku', label: 'Kino Baltic Turku' },
-        { value: 'Elokuvateatteri Helsinki Central', label: 'Elokuvateatteri Helsinki Central' },
-    ];
-
-    const auditoriums = [
-        { value: 'Auditorium 1 (Oulu)', label: 'Auditorium 1 (Oulu)' },
-        { value: 'Auditorium 2 (Oulu)', label: 'Auditorium 2 (Oulu)' },
-        { value: 'Auditorium 3 (Oulu)', label: 'Auditorium 3 (Oulu)' },
-
-        { value: 'Auditorium 1 (Turku)', label: 'Auditorium 1 (Turku)' },
-        { value: 'Auditorium 2 (Turku)', label: 'Auditorium 2 (Turku)' },
-        { value: 'Auditorium 3 (Turku)', label: 'Auditorium 3 (Turku)' },
-        { value: 'Auditorium 4 (Turku)', label: 'Auditorium 4 (Turku)' },
-
-        { value: 'Auditorium 1 (Helsinki)', label: 'Auditorium 1 (Helsinki)' },
-        { value: 'Auditorium 2 (Helsinki)', label: 'Auditorium 2 (Helsinki)' },
-    ];
+    const [theatersOptions, setTheatersOptions]  = useState([]);;
+    const [auditoriumsOptions, setAuditoriumsOptions]  = useState([]);;
 
 
-    const [selectedCinemas, setSelectedCinemas] = useState(null);
+    const [selectedTheater, setSelectedTheater] = useState(null);
     const [selectedAuditoriums, setSelectedAuditoriums] = useState(null);
 
 
@@ -53,21 +36,65 @@ function AddSchedulingForm(props) {
             const newDuration = parseInt(data.duration_minutes);
             setDuration(newDuration);
         } catch (err) {
-            console.error(err);
+            console.error(`Error loading movie with id ${id}`, err.message);
         }
     }
+
+    async function getTheatersList(){
+        try {
+            const newTheaters = await getAllTheaters();
+            if (!newTheaters) throw new Error("Theaters not found");
+
+            let theatersList = [];
+
+            newTheaters.map((theater) => {
+                theatersList.push({
+                    value: theater.id,
+                    label: theater.name,
+                });
+            });
+            setTheatersOptions(theatersList);
+        } catch (error) {
+            console.error(`Error getting theaters`, error.message);
+        }
+    }
+
+    async function getAuditoriumsList() {
+        try {
+            const newAuditoriums = await getAuditoriums();
+            if (!newAuditoriums) throw new Error("Auditoriums not found");
+
+            let newAuditoriumsList = [];
+
+            newAuditoriums.map(async (auditorium) => {
+                const theaterAuditorium = await getTheaterById(auditorium.theater_id);
+                const theaterName = theaterAuditorium.name;
+                newAuditoriumsList.push({
+                    value: auditorium.id,
+                    label: `${auditorium.name}, (${theaterName})`,
+                });
+                setAuditoriumsOptions(newAuditoriumsList);
+            });
+        } catch (error) {
+            console.error(`Error getting auditoriums`, error.message);
+        }
+    }
+
+    useEffect(() => {
+        if (duration > 0 && startTime) {
+            setEndTime(addMinutes(startTime, duration));
+        } else {
+            setEndTime(startTime);
+        }
+    }, [startTime, duration]);
+
+
     useEffect(() => {
         loadMovie();
-        handleStartTimeChange(new Date());
-    }, [id, duration]);
+        getTheatersList();
+        getAuditoriumsList();
+    }, [id]);
 
-    function handleStartTimeChange(date) {
-        setStartTime(date);
-        if(duration) {
-            const newEndTime = addMinutes(date, duration);
-            setEndTime(newEndTime);
-        }
-    }
 
     return (
         <div style={{
@@ -105,7 +132,7 @@ function AddSchedulingForm(props) {
                     <DatePicker
                         id="start-time-input"
                         selected={startTime}
-                        onChange={(date) => handleStartTimeChange(date)}
+                        onChange={(date) => setStartTime(date)}
                         showTimeSelect
                         showTimeSelectOnly
                         timeIntervals={15}
@@ -129,9 +156,9 @@ function AddSchedulingForm(props) {
                          gap: '40px',
                      }}>
                     <Select
-                        defaultValue={selectedCinemas}
-                        onChange={setSelectedCinemas}
-                        options={cinemas}
+                        defaultValue={selectedTheater}
+                        onChange={setSelectedTheater}
+                        options={theatersOptions}
                         isMulti
                         closeMenuOnSelect={false}
                         hideSelectedOptions={false}
@@ -146,7 +173,7 @@ function AddSchedulingForm(props) {
                     <Select
                         defaultValue={selectedAuditoriums}
                         onChange={setSelectedAuditoriums}
-                        options={auditoriums}
+                        options={auditoriumsOptions}
                         isMulti
                         closeMenuOnSelect={false}
                         hideSelectedOptions={false}

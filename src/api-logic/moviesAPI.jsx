@@ -25,26 +25,29 @@ export async function importMovie(movieData) {
     let attempts = 0;
     const maxAttempts = 10;
 
-    while (exists && attempts <= maxAttempts) {
-        attempts++;
-        const randomNumber = Math.floor(Math.random() * 9999) + 1;
-        newID = randomNumber.toString().padStart(3, "0");
+    if(!movieData.id){
+        while (exists && attempts <= maxAttempts) {
+            attempts++;
+            const randomNumber = Math.floor(Math.random() * 9999) + 1;
+            newID = randomNumber.toString().padStart(3, "0");
 
-        try {
-            const existingMovie = await getTMDBMovieByID(newID);
+            try {
+                const existingMovie = await getTMDBMovieByID(newID);
 
-            if (!existingMovie) {
+                if (!existingMovie) {
+                    exists = false;
+                    movieData.id = newID;
+                } else {
+                    console.log(`ID ${newID} already exists, retrying...`);
+                }
+
+            } catch (error) {
                 exists = false;
                 movieData.id = newID;
-            } else {
-                console.log(`ID ${newID} already exists, retrying...`);
             }
-
-        } catch (error) {
-            exists = false;
-            movieData.id = newID;
         }
     }
+
 
     const response = await fetch(`${BASE_URL}/import`, {
         method: "POST",
