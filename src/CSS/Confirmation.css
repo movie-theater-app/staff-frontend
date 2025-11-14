@@ -41,7 +41,19 @@
   transition: background-color 0.25s ease;
 }
 
-.confirmation button:hover {
+.view-seat-map {
+  margin-top: 2rem;
+  background-color: #0097b2;
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.confirmation button:hover, .view-seat-map:hover  {
   background-color: #007d93;
 }
 .auditoriums {
