@@ -3,7 +3,7 @@ import AddTheatreForm from "../components/AddTheatreForm";
 import Navbar from "../components/Navbar";
 import { addTheatre, addAuditorium } from "../api-logic/addTheatreApi";
 import { createSeats } from "../api-logic/seatApi";
-import SeatMapOverlay from "../components/SeatMapOverlay";
+import SeatMapOverlay from "../components/Seat-map/SeatMapOverlay";
 import "../CSS/Confirmation.css";
 
 export default function AddTheatre() {
@@ -80,13 +80,12 @@ export default function AddTheatre() {
                 {confirmation.auditoriums.map((auditorium, index) => (
                   <li key={index}>
                     {auditorium.name} – {auditorium.seat_count} seats
-                    <button
+                    <span><button
                       className="view-seat-map"
                       onClick={() => handleViewSeats(auditorium)}
-                      style={{ marginLeft: "15px" }}
                     >
-                      View seat map
-                    </button>
+                      Seat map
+                    </button></span>
                   </li>
                 ))}
               </ul>

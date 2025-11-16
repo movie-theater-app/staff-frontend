@@ -22,12 +22,12 @@
   color: #00384f;
 }
 
-.confirmation ul {
+/*.confirmation ul {
   list-style-type: disc;
   padding: 0;
   text-align: center;
   margin: 0.5rem 0;
-}
+} */
 
 .confirmation button {
   margin-top: 2rem;
@@ -42,39 +42,49 @@
 }
 
 .view-seat-map {
-  margin-top: 2rem;
-  background-color: #0097b2;
+  background-color: #0d324dad !important;
+  margin-left: 4rem;
   border: none;
   color: white;
   font-weight: 500;
-  padding: 0.6rem 1.5rem;
+  padding: 0.5rem 0.5rem !important;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.25s ease;
 }
 
-.confirmation button:hover, .view-seat-map:hover  {
+.confirmation button:hover {
   background-color: #007d93;
 }
 .auditoriums {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
 }
 
 .auditoriums ul {
   list-style-position: inside;
   display: flex;
   flex-direction: column;
-  align-items: center;          
-  gap: 0.3rem;                  
+  align-items: flex-start !important;
+  margin: -0.5rem !important;          
 }
 
+/*.auditorium-row {
+  display: flex;
+  align-items: center;
+  width: 100%;              
+  justify-content: space-between; 
+  gap: 1rem;              
+} */
+
+/*.auditorium-row button {
+  margin-left: auto;        
+}*/
+
 .auditoriums li {
-  width: fit-content;           
-  text-align: center;
+  padding-top: -1rem !important;
+  margin-top: -1rem !important;
   color: #00384f;
   font-size: 1rem;
   font-weight: 500;
