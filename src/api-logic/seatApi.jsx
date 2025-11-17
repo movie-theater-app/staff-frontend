@@ -31,3 +31,13 @@ export async function createSeats(auditoriumId, seatCount) {
     throw error;
   }
 }
+
+export async function updateSeats(auditoriumId, changes) {
+  const res = await fetch(`/api/seats/update/${auditoriumId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(changes)
+  });
+  return res.json();
+}
+
