@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTheatreForm from "../components/AddTheatreForm";
 import Navbar from "../components/Navbar";
 import { addTheatre, addAuditorium } from "../api-logic/addTheatreApi";
 import { createSeats } from "../api-logic/seatApi";
 import SeatMapOverlay from "../components/Seat-map/SeatMapOverlay";
+import { useParams, useNavigate } from "react-router-dom";
 import "../CSS/Confirmation.css";
 
 export default function AddTheatre() {
   const [confirmation, setConfirmation] = useState(null);
   const [showOverlay, setShowOverlay] = useState(false);
   const [auditoriumId, setAuditoriumId] = useState(null);
+
+  const params = useParams();
+  const navigate = useNavigate();
+
+  // overlay opens automatically if url is "/add-theatre/seat-map/:auditoriumId"
+  useEffect(() => {
+    if (params.auditoriumId) {
+      setAuditoriumId(params.auditoriumId);
+      setShowOverlay(true);
+    }
+  }, [params.auditoriumId]);
+
 
   const handleSubmit = async (data, resetForm) => {
     try {
@@ -54,6 +67,7 @@ export default function AddTheatre() {
   const handleViewSeats = (auditorium) => {
     setAuditoriumId(auditorium.id);
     setShowOverlay(true);
+    navigate(`/add-theatre/seat-map/${auditorium.id}`);
   };
   // for adding new theatre button
   const handleAddNew = () => setConfirmation(null);
@@ -92,7 +106,10 @@ export default function AddTheatre() {
               {showOverlay && (
                 <SeatMapOverlay
                   auditoriumId={auditoriumId}
-                  onClose={() => setShowOverlay(false)}
+                  onClose={() => {
+                    setShowOverlay(false);
+                    navigate("/add-theatre");
+                  }}
                 />
               )}
             </div>

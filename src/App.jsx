@@ -5,6 +5,8 @@ import StaffDashboard from "./pages/StaffDashboard";
 import AddTheatre from './pages/AddTheatre';
 import AddMovie from "./pages/AddMovie.jsx";
 import ScheduleMovie from "./pages/ScheduleMovie.jsx";
+import SeatMapPage from "./pages/SeatMapPage";
+
 
 function App() {
 
@@ -14,6 +16,7 @@ function App() {
         <Route path="/add-theatre" element={<AddTheatre />} />
         <Route path="/add-movie" element={<AddMovie />} />
         <Route path="/movie/schedule/:id" element={<ScheduleMovie />} />
+        <Route path="/add-theatre/seat-map/:auditoriumId" element={<AddTheatre showOverlayRoute />} />
     </Routes>
   )
 }
