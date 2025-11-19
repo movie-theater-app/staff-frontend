@@ -11,7 +11,7 @@ export default function AddTheatre() {
     try {
       // add theatre
       const createdTheatre = await addTheatre({
-        theatre_name: data.theatre_name,
+        name: data.theatre_name,
         address: data.address,
         contact_information: data.contact_information
       })

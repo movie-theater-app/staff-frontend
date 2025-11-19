@@ -13,7 +13,7 @@ export default function AddTheatreForm({ onSubmit }) {
 
   const resetForm = () => {
     setTheatre({
-      name: "",
+      theatre_name: "",
       address: "",
       contact_information: "",
       auditoriums: [{ name: "", seat_count: "" }],
@@ -66,7 +66,7 @@ export default function AddTheatreForm({ onSubmit }) {
     <form onSubmit={handleSubmit}>
         <div className="form-field">
             <h3>Name:</h3>
-            <input name="theatre_name" placeholder="Theatre name" value={theatre.name} onChange={handleChange} />
+            <input name="theatre_name" placeholder="Theatre name" value={theatre.theatre_name} onChange={handleChange} />
         </div>
         <div className="form-field">
             <h3>Address:</h3>
