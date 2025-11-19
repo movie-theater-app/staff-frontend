@@ -15,11 +15,9 @@ export default function AddTheatre() {
   const params = useParams();
   const navigate = useNavigate();
 
-  // overlay opens automatically if url is "/add-theatre/seat-map/:auditoriumId"
   useEffect(() => {
     if (params.auditoriumId) {
       setAuditoriumId(params.auditoriumId);
-      setShowOverlay(true);
     }
   }, [params.auditoriumId]);
 
