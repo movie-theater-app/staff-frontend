@@ -1,5 +1,6 @@
 import React from 'react';
 import {searchTMDBMovie} from "../../api-logic/moviesAPI.jsx";
+import "../../CSS/AddMovie.css"
 
 function SearchMovieForm({getMovieByID} ) {
 
@@ -18,49 +19,23 @@ function SearchMovieForm({getMovieByID} ) {
 
 
     return (
-        <div className="search-movie-div" style={{
-            flex: '1',
-        }}>
-            <div className="search-input-div" style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: '10px',
-                color: 'white',
-            }}>
-                <label htmlFor="movieToSearchInput" > Search for movie </label>
-                <input id="movieToSearchInput" onChange={e => setMovieToSearch(e.target.value)} value={movieToSearch} style={{width: '30%',}} />
-                <button style={{width: '30%',}} onClick={handleMovieSearch}>Search</button>
+        <div className="search-movie-div">
+            <div className="search-input-div">
+                <label htmlFor="movie-search-input" > Search for movie </label>
+                <input id="movie-search-input" onChange={e => setMovieToSearch(e.target.value)} value={movieToSearch} style={{width: '30%',}} />
+                <button className="search-btn" style={{width: '30%',}} onClick={handleMovieSearch}>Search</button>
             </div>
-            <ul style={{
-                display: 'flex',
-                justifyContent: 'start',
-                alignItems: 'center',
-                flexDirection: 'column',
-                height: '500px',
-                overflowY: 'scroll',
-                marginTop: '50px',
-            }}>
-                {movieList.map((movie) => {
-                    return <li key={movie.id} className="movie" style={
-                        {
-                            display: "flex",
-                            justifyContent: "space-between",
-                            color: "white",
-                            gap: '30px',
-                            padding: '10px',
-                            alignItems: "center",
-                            width: '85%',
-                        }}>
-                        <img src={movie.posterPath}/>
+            <ul className="search-movie-list">
+                {movieList.filter(movie => movie.title && movie.releaseDate).map((movie) => {
+                    return <li key={movie.id} className="movie-li">
+                        {movie.posterPath ? <img src={movie.posterPath}/> : ""}
                         <p>{movie.title}</p>
                         <p>{movie.releaseDate}</p>
-                        <button onClick={() => getMovieByID(movie.id)} style={{width: '115px', height:'60px'}}>Add new movie</button>
+                        <button className="movie-li-btn"onClick={() => getMovieByID(movie.id)}>Add new movie</button>
                     </li>
                 })}
             </ul>
-            <button onClick={() => getMovieByID('')}>Add New Movie From Scratch</button>
+            <button className="add-movie-scratch-btn"onClick={() => getMovieByID('')}>Add New Movie From Scratch</button>
         </div>
     );
 }

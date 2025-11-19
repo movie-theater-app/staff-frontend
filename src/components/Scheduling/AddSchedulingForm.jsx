@@ -1,43 +1,85 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {getTMDBMovieByID} from "../../api-logic/moviesAPI.jsx"
 import {addMinutes} from "date-fns";
 import Select from "react-select";
-import {getAllTheaters, getAuditoriums, getTheaterById} from "../../api-logic/getTheatersApi.jsx";
+import {
+    getAllTheaters, getAuditoriumById,
+    getAuditoriumByTheater,
+    getTheaterById
+} from "../../api-logic/getTheatersApi.jsx";
+import { importSchedule } from "../../api-logic/schedulingAPI.jsx";
+import "../../CSS/Scheduling.css"
 
 
-function AddSchedulingForm(props) {
+function AddSchedulingForm({movie, onScheduled}) {
 
-    const {id} = useParams();
     const [selectedDates, setSelectedDates] = useState([ new Date() ]);
     const [startTime, setStartTime] = useState(new Date());
     const [endTime, setEndTime] = useState(new Date());
     const [duration, setDuration] = useState(0);
 
-    const [theatersOptions, setTheatersOptions]  = useState([]);;
-    const [auditoriumsOptions, setAuditoriumsOptions]  = useState([]);;
+    const [theatersOptions, setTheatersOptions]  = useState([]);
+    const [auditoriumsOptions, setAuditoriumsOptions]  = useState([]);
 
 
-    const [selectedTheater, setSelectedTheater] = useState(null);
+    const [selectedTheaters, setselectedTheaters] = useState(null);
     const [selectedAuditoriums, setSelectedAuditoriums] = useState(null);
 
 
     async function formHandler(e) {
         e.preventDefault();
+
+
+        let newSchedules = [];
+        async function createSchedules() {
+            for (const date of selectedDates) {
+                const dateToSend = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+
+                for ( const auditorium of selectedAuditoriums) {
+                    const a = await getAuditoriumById(auditorium.value);
+                    newSchedules.push({
+                        movie_id: movie.id,
+                        theater_id: a.theater_id,
+                        auditorium_id: a.id,
+                        screening_date: dateToSend,
+                        start_time: formatTime(startTime),
+                        end_time: formatTime(endTime),
+                    })
+                }
+            }
+
+        }
+        await createSchedules();
+
+        try {
+            const result = await Promise.all(
+                newSchedules.map((schedule) => importSchedule(schedule)),
+            );
+            console.log(result);
+        } catch (error) {
+            console.error("Failed to create some schedules:", error);
+
+        }
+
+        if(onScheduled) onScheduled();
+
     }
 
-    async function loadMovie() {
-        try {
-            const data = await getTMDBMovieByID(id);
-            if (!data) throw new Error("Movie not found");
-            console.log(data);
-            const newDuration = parseInt(data.duration_minutes);
+    function formatTime(time) {
+        const timeZoneValue = time.getTimezoneOffset() >= 0 ? "-" : "+";
+        const offSetHours = String(Math.abs(Math.floor(time.getTimezoneOffset() / 60))).padStart(2, "0");
+        return `${time.getHours()}:${time.getMinutes()}:00${timeZoneValue}${offSetHours}`;
+    }
+
+    async function getMovieDuration() {
+        if(movie){
+            const newDuration = parseInt(movie.duration_minutes);
             setDuration(newDuration);
-        } catch (err) {
-            console.error(`Error loading movie with id ${id}`, err.message);
+        } else {
+            console.error("Movie does not exist")
         }
+
     }
 
     async function getTheatersList(){
@@ -47,7 +89,8 @@ function AddSchedulingForm(props) {
 
             let theatersList = [];
 
-            newTheaters.map((theater) => {
+
+            newTheaters.forEach((theater) => {
                 theatersList.push({
                     value: theater.id,
                     label: theater.name,
@@ -59,26 +102,30 @@ function AddSchedulingForm(props) {
         }
     }
 
-    async function getAuditoriumsList() {
-        try {
-            const newAuditoriums = await getAuditoriums();
-            if (!newAuditoriums) throw new Error("Auditoriums not found");
 
+
+    useEffect(() => {
+        async function loadAuditoriums() {
             let newAuditoriumsList = [];
 
-            newAuditoriums.map(async (auditorium) => {
-                const theaterAuditorium = await getTheaterById(auditorium.theater_id);
+            if(!selectedTheaters)
+                return;
+            for (const theater of selectedTheaters) {
+                const theaterAuditorium = await getTheaterById(theater.value);
                 const theaterName = theaterAuditorium.name;
-                newAuditoriumsList.push({
-                    value: auditorium.id,
-                    label: `${auditorium.name}, (${theaterName})`,
-                });
-                setAuditoriumsOptions(newAuditoriumsList);
-            });
-        } catch (error) {
-            console.error(`Error getting auditoriums`, error.message);
+                const auditoriums = await getAuditoriumByTheater(theater.value);
+
+                for (const auditorium of auditoriums) {
+                    newAuditoriumsList.push({
+                        value: auditorium.id,
+                        label: `${auditorium.name}, (${theaterName})`
+                    });
+                }
+            }
+            setAuditoriumsOptions(newAuditoriumsList);
         }
-    }
+        loadAuditoriums();
+    }, [selectedTheaters]);
 
     useEffect(() => {
         if (duration > 0 && startTime) {
@@ -90,93 +137,81 @@ function AddSchedulingForm(props) {
 
 
     useEffect(() => {
-        loadMovie();
+        getMovieDuration();
         getTheatersList();
-        getAuditoriumsList();
-    }, [id]);
+    }, [movie]);
 
 
     return (
-        <div style={{
-            color: 'white',
-        }}>
-
-            <form onSubmit={formHandler} style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '15px',
-            }}>
-
-                <div className="date-div"
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    gap: '40px',
-                }}>
+        <div className="scheduling-div">
+            <form onSubmit={formHandler}>
+                <div className="form-field">
+                    <label htmlFor="date-input">Select Dates</label>
                     <DatePicker
-                    selectedDates={selectedDates}
-                    selectsMultiple
-                    onChange={(dates) => {setSelectedDates(dates)}}
-                    shouldCloseOnSelect={false}
-                    minDate={new Date()}
-                    disabledKeyboardNavigation
+                        id="date-input"
+                        selectedDates={selectedDates}
+                        selectsMultiple
+                        onChange={(dates) => {setSelectedDates(dates)}}
+                        shouldCloseOnSelect={false}
+                        minDate={new Date()}
+                        disabledKeyboardNavigation
+                        required
                     />
                 </div>
-                <div className="times-div"
-                     style={{
-                         display: 'flex',
-                         flexDirection: 'row',
-                         gap: '40px',
-                     }}>
-                    <DatePicker
-                        id="start-time-input"
-                        selected={startTime}
-                        onChange={(date) => setStartTime(date)}
-                        showTimeSelect
-                        showTimeSelectOnly
-                        timeIntervals={15}
-                        timeCaption="Time"
-                        dateFormat="h:mm aa"
-                    />
-                    <DatePicker
-                        id="end-time-input"
-                        selected={endTime}
-                        showTimeSelect
-                        showTimeSelectOnly
-                        disabled
-                        timeCaption="Time"
-                        dateFormat="h:mm aa"
-                    />
+
+                <div className="times-container">
+                    <div className="form-field">
+                        <label htmlFor="start-time-input">Start Time</label>
+                        <DatePicker
+                            className="start-time-input"
+                            selected={startTime}
+                            onChange={(date) => setStartTime(date)}
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={15}
+                            timeCaption="Time"
+                            dateFormat="h:mm aa"
+                            required
+                        />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="end-time-input">End Time</label>
+                        <DatePicker
+                            className="end-time-input"
+                            selected={endTime}
+                            showTimeSelect
+                            showTimeSelectOnly
+                            disabled
+                            timeCaption="Time"
+                            dateFormat="h:mm aa"
+                            required
+                        />
+                    </div>
                 </div>
-                <div className="times-div"
-                     style={{
-                         display: 'flex',
-                         flexDirection: 'row',
-                         gap: '40px',
-                     }}>
+                <div className="form-field">
+                    <label htmlFor="theaters-input">Select Theaters</label>
                     <Select
-                        defaultValue={selectedTheater}
-                        onChange={setSelectedTheater}
+                        className="theaters-input"
+                        defaultValue={selectedTheaters}
+                        onChange={setselectedTheaters}
                         options={theatersOptions}
                         isMulti
                         closeMenuOnSelect={false}
                         hideSelectedOptions={false}
+                        required
                     />
                 </div>
-                <div className="times-div"
-                     style={{
-                         display: 'flex',
-                         flexDirection: 'row',
-                         gap: '40px',
-                     }}>
+                <div className="form-field">
+                    <label htmlFor="auditoriums-input">Select Theaters</label>
                     <Select
+                        className="auditoriums-input"
                         defaultValue={selectedAuditoriums}
                         onChange={setSelectedAuditoriums}
                         options={auditoriumsOptions}
                         isMulti
                         closeMenuOnSelect={false}
                         hideSelectedOptions={false}
+                        required
                     />
                 </div>
 
@@ -184,7 +219,7 @@ function AddSchedulingForm(props) {
 
 
 
-                <button type="submit">Add New Movie</button>
+                <button type="submit">Add New Schedule</button>
             </form>
         </div>
     );
