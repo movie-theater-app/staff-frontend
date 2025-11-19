@@ -31,13 +31,33 @@ export async function createSeats(auditoriumId, seatCount) {
     throw error;
   }
 }
+// updates both seat status and type based on changes in the passed object
+export async function updateSeats(changes) {
+  const requests = [];
+  for (const [seatId, change] of Object.entries(changes)) {
+    const dbId = change.dbId;
+    if (!dbId) continue;
 
-export async function updateSeats(auditoriumId, changes) {
-  const res = await fetch(`/api/seats/update/${auditoriumId}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(changes)
-  });
-  return res.json();
+    // update status
+    if (change.newStatus === "reserved" || change.newStatus === "available") {
+      requests.push(
+        fetch(`${VITE_BASE_URL}/seats/${dbId}/status`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: change.newStatus })
+        })
+      );
+    }
+    // update seat_type
+    if (change.newSeatType === "disabled" || change.newSeatType === "normal") {
+      requests.push(
+        fetch(`${VITE_BASE_URL}/seats/${dbId}/type`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ seat_type: change.newSeatType })
+        })
+      );
+    }
+  }
+  return Promise.all(requests);
 }
-
