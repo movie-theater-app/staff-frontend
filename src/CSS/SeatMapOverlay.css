@@ -15,7 +15,7 @@
   padding: 4rem;
   border-radius: 8px;
   width: 80%;
-  max-width: 1200px;
+  max-width: 1500px;
   text-align: center;
   position: relative;
   box-shadow: 0 0 25px rgba(121, 141, 140, 0.5);
@@ -73,7 +73,7 @@
   justify-content: center;
   cursor: pointer;
 }
-.seat-actions-wrapper {
+.seat-actions-wrapper, .release-seats-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,11 +84,11 @@
   gap: 1rem;
   margin-top: 1rem;
 }
-.wheelchair-reserve-btn, .reserve-btn {
+.wheelchair-reserve-btn, .reserve-btn, .release-seats-btn {
   font-size: 1rem;
 }
 .wheelchair-reserve-btn {
-  padding: 0.6rem 0.5rem 0.6rem 1.2rem!important;
+  padding: 0.6rem 0.2em 0.6rem 1.2rem!important;
 }
 
 .save-changes-wrapper {
@@ -126,6 +126,7 @@
   width: 40px;
   height: 40px;
   border-radius: 6px;
+  margin-bottom: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,3 +151,8 @@
   cursor: pointer;
 }
 
+.seat.wheelchair.reserved {
+  background-color: #ce2525; 
+  color: white;
+  cursor: pointer;
+}
