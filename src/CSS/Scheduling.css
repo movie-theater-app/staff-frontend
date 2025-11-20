@@ -20,6 +20,9 @@
     padding: 1rem 2rem;
     font-size: 1rem;
 }
+.scheduling-div {
+    margin-top: 2rem;
+}
 .scheduling-div form {
     display: flex;
     flex-direction: column;
@@ -40,6 +43,12 @@
     margin-bottom: 15px;
     align-self: center;
 }
+.scheduling-div .submit-button {
+    padding: 1rem;
+    background-color: var(--button);
+    border-radius: 8px;
+    color: white;
+}
 
 .times-container{
     display: flex;
@@ -48,7 +57,7 @@
 }
 
 
-/* SCHEDULING CONFIRMATION */
+/* SCHEDULING LIST */
 
 .schedule-theaters-cont {
     margin-top: 5rem;
@@ -59,4 +68,14 @@
     justify-content: start;
     color:white;
     gap: 75px;
+}
+.schedule-li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.schedule-li button{
+    padding: 0.5rem;
 }

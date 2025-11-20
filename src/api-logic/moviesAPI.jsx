@@ -74,7 +74,8 @@ export async function getMovieByID(movieID) {
 
 export async function updateMovie(movie_id, movieData) {
 
-
+    console.log(movie_id);
+    console.log(movieData);
     const response = await fetch(`${BASE_URL}/${movie_id}`, {
         method: "PUT",
         headers: {
@@ -85,6 +86,15 @@ export async function updateMovie(movie_id, movieData) {
 
     if(!response.ok){
         throw new Error("Failed to update movie in the database");
+    }
+    return response.json();
+}
+
+export async function getAllMovies() {
+    const response = await fetch(`${BASE_URL}`);
+
+    if(!response.ok){
+        throw new Error("Failed to get all the movies in the database");
     }
     return response.json();
 }

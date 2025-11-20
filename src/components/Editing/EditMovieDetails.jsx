@@ -1,97 +1,28 @@
 import React from 'react';
+import {updateMovie} from "../../api-logic/moviesAPI.jsx";
+import MovieForm from "../AddMovie/MovieForm.jsx";
+import {useNavigate} from "react-router-dom";
 
-function EditMovieDetails(props) {
+function EditMovieDetails({movieData, confirmChange}) {
+
+    const navigate = useNavigate();
+
+    async function handleSubmit (movie) {
+        try {
+            const result = await updateMovie(movie.id, movie);
+            if (!result){
+                alert(`Can not update movie with id ${movie.id}`);
+                throw new Error('Failed to update movie');
+            }
+            confirmChange(movie);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
-        <div className="add-movie-form-div">
-            <form onSubmit={formHandler}>
-
-                <div className="form-field">
-                    <label htmlFor="title-input">Title</label>
-                    <input type="text" id="title-input" placeholder={"Enter the title"} name="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
-                </div>
-                <div className="form-field">
-                    <label htmlFor="genre-input">Genre</label>
-                    <input
-                        type="text"
-                        id="genre-input"
-                        name="genre"
-                        placeholder="Enter genre"
-                        value={genre}
-                        onChange={e => setGenre(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-grouping">
-                    <div className="form-field">
-                        <label htmlFor="age-rating-input">Age Rating</label>
-                        <input
-                            type="text"
-                            id="age-rating-input"
-                            name="ageRating"
-                            placeholder="Enter age rating"
-                            value={ageRating}
-                            onChange={e => setAgeRating(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="form-field">
-                        <label htmlFor="duration-input">Duration (minutes)</label>
-                        <input
-                            type="number"
-                            id="duration-input"
-                            name="duration"
-                            placeholder="Enter duration"
-                            value={duration}
-                            onChange={e => setDuration(e.target.value)}
-                            required
-                        />
-                    </div>
-                </div>
-                <div className="form-field"> <label htmlFor="trailer-input">Trailer URL</label>
-                    <input
-                        type="text"
-                        id="trailer-input"
-                        name="trailer"
-                        placeholder="Enter the trailer URL"
-                        value={trailer}
-                        onChange={e => setTrailer(e.target.value)}ç
-                        required
-                    />
-                </div>
-
-                <div className="form-field">
-                    <label htmlFor="poster-input">Poster URL</label>
-                    <input
-                        type="text"
-                        id="poster-input"
-                        name="poster"
-                        placeholder="Enter poster URL"
-                        value={poster}
-                        onChange={e => setPoster(e.target.value)}
-                        required
-                    />
-                </div>
-
-
-                <div className="form-field">
-                    <label htmlFor="description-input">Description</label>
-                    <textarea
-                        id="description-input"
-                        name="description"
-                        placeholder="Enter the description"
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                        required
-                    />
-                </div>
-
-
-
-
-
-
-                <button className="add-movie-btn"type="submit">Save New Movie</button>
-            </form>
+        <div>
+            <h1>EDIT THE DETAILS FOR THE MOVIE</h1>
+            <MovieForm movieData={movieData} handleSubmit={handleSubmit}/>
         </div>
     );
 }

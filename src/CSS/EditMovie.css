@@ -1,0 +1,13 @@
+.choose-movie-edit {
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    color:white;
+    gap: 20px;
+}
+.choose-movie-div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    cursor: pointer;
+}

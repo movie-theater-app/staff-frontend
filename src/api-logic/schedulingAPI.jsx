@@ -82,4 +82,14 @@ export async function getScheduleByMovieAndTheater(movie_id,theater_id) {
     return response.json();
 }
 
+export async function deleteSchedule(id) {
+    const response = await fetch(`${BASE_URL}/${id}`,{
+        method: "DELETE",
+    });
+
+    if(!response.ok){
+        throw new Error(`Failed to delete schedule with id: ${id}`);
+    }
+}
+
 

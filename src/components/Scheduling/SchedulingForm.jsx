@@ -12,7 +12,7 @@ import { importSchedule } from "../../api-logic/schedulingAPI.jsx";
 import "../../CSS/Scheduling.css"
 
 
-function AddSchedulingForm({movie, onScheduled}) {
+function SchedulingForm({movie, onScheduled}) {
 
     const [selectedDates, setSelectedDates] = useState([ new Date() ]);
     const [startTime, setStartTime] = useState(new Date());
@@ -23,8 +23,8 @@ function AddSchedulingForm({movie, onScheduled}) {
     const [auditoriumsOptions, setAuditoriumsOptions]  = useState([]);
 
 
-    const [selectedTheaters, setselectedTheaters] = useState(null);
-    const [selectedAuditoriums, setSelectedAuditoriums] = useState(null);
+    const [selectedTheaters, setselectedTheaters] = useState([]);
+    const [selectedAuditoriums, setSelectedAuditoriums] = useState([]);
 
 
     async function formHandler(e) {
@@ -53,10 +53,9 @@ function AddSchedulingForm({movie, onScheduled}) {
         await createSchedules();
 
         try {
-            const result = await Promise.all(
+            await Promise.all(
                 newSchedules.map((schedule) => importSchedule(schedule)),
             );
-            console.log(result);
         } catch (error) {
             console.error("Failed to create some schedules:", error);
 
@@ -108,8 +107,12 @@ function AddSchedulingForm({movie, onScheduled}) {
         async function loadAuditoriums() {
             let newAuditoriumsList = [];
 
-            if(!selectedTheaters)
+            if(!selectedTheaters || selectedTheaters.length === 0){
+                setAuditoriumsOptions([]);
+                setSelectedAuditoriums([]);
                 return;
+            }
+
             for (const theater of selectedTheaters) {
                 const theaterAuditorium = await getTheaterById(theater.value);
                 const theaterName = theaterAuditorium.name;
@@ -122,7 +125,20 @@ function AddSchedulingForm({movie, onScheduled}) {
                     });
                 }
             }
+            console.log(selectedAuditoriums)
+
             setAuditoriumsOptions(newAuditoriumsList);
+
+            if(selectedAuditoriums.length > 0){
+                setSelectedAuditoriums(prevSelected => {
+                    return prevSelected.filter(a =>
+                        newAuditoriumsList.some(opt => opt.value === a.value)
+                    );
+                });
+            }
+
+
+
         }
         loadAuditoriums();
     }, [selectedTheaters]);
@@ -144,6 +160,7 @@ function AddSchedulingForm({movie, onScheduled}) {
 
     return (
         <div className="scheduling-div">
+            <h2>ADD/EDIT THE SCHEDULE OF THE MOVIE</h2>
             <form onSubmit={formHandler}>
                 <div className="form-field">
                     <label htmlFor="date-input">Select Dates</label>
@@ -155,6 +172,7 @@ function AddSchedulingForm({movie, onScheduled}) {
                         shouldCloseOnSelect={false}
                         minDate={new Date()}
                         disabledKeyboardNavigation
+                        isClearable
                         required
                     />
                 </div>
@@ -192,7 +210,7 @@ function AddSchedulingForm({movie, onScheduled}) {
                     <label htmlFor="theaters-input">Select Theaters</label>
                     <Select
                         className="theaters-input"
-                        defaultValue={selectedTheaters}
+                        value={selectedTheaters}
                         onChange={setselectedTheaters}
                         options={theatersOptions}
                         isMulti
@@ -205,7 +223,7 @@ function AddSchedulingForm({movie, onScheduled}) {
                     <label htmlFor="auditoriums-input">Select Theaters</label>
                     <Select
                         className="auditoriums-input"
-                        defaultValue={selectedAuditoriums}
+                        value={selectedAuditoriums}
                         onChange={setSelectedAuditoriums}
                         options={auditoriumsOptions}
                         isMulti
@@ -219,10 +237,10 @@ function AddSchedulingForm({movie, onScheduled}) {
 
 
 
-                <button type="submit">Add New Schedule</button>
+                <button className="submit-button" type="submit">Add New Schedule</button>
             </form>
         </div>
     );
 }
 
-export default AddSchedulingForm;
+export default SchedulingForm;
