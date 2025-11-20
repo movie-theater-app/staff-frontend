@@ -1,11 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddTheatreForm from "../components/AddTheatreForm";
 import Navbar from "../components/Navbar";
 import { addTheatre, addAuditorium } from "../api-logic/addTheatreApi";
+import { createSeats } from "../api-logic/seatApi";
+import SeatMapOverlay from "../components/Seat-map/SeatMapOverlay";
+import { useParams, useNavigate } from "react-router-dom";
 import "../CSS/Confirmation.css";
 
 export default function AddTheatre() {
   const [confirmation, setConfirmation] = useState(null);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [auditoriumId, setAuditoriumId] = useState(null);
+
+  const params = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (params.auditoriumId) {
+      setAuditoriumId(params.auditoriumId);
+    }
+  }, [params.auditoriumId]);
+
 
   const handleSubmit = async (data, resetForm) => {
     try {
@@ -25,7 +40,11 @@ export default function AddTheatre() {
           name: auditorium.name,
           seat_count: auditorium.seat_count
         });
-        createdAuditoriums.push(added);
+
+        // create seats for the auditorium
+        await createSeats(added.auditorium.id, Number(auditorium.seat_count));
+
+        createdAuditoriums.push(added.auditorium);
         console.log('Added auditorium:', added);
       }
       
@@ -41,6 +60,13 @@ export default function AddTheatre() {
       alert(error.message);
     };
   }
+
+  // for viewing seat map of added auditorium
+  const handleViewSeats = (auditorium) => {
+    setAuditoriumId(auditorium.id);
+    setShowOverlay(true);
+    navigate(`/add-theatre/seat-map/${auditorium.id}`);
+  };
   // for adding new theatre button
   const handleAddNew = () => setConfirmation(null);
 
@@ -55,7 +81,7 @@ export default function AddTheatre() {
         {confirmation ? (
         <div className="confirmation">
           <h2>Theatre added successfully!</h2>
-          <h3>Name:</h3> <p><strong>{confirmation.theatre.theatre_name}</strong></p>
+          <h3>Name:</h3> <p><strong>{confirmation.theatre.name}</strong></p>
           <h3>Address:</h3> <p><strong>{confirmation.theatre.address}</strong></p>
           <h3>Contact (phone):</h3><p><strong>{confirmation.theatre.contact_information}</strong></p>
 
@@ -66,9 +92,24 @@ export default function AddTheatre() {
                 {confirmation.auditoriums.map((auditorium, index) => (
                   <li key={index}>
                     {auditorium.name} – {auditorium.seat_count} seats
+                    <span><button
+                      className="view-seat-map"
+                      onClick={() => handleViewSeats(auditorium)}
+                    >
+                      Seat map
+                    </button></span>
                   </li>
                 ))}
               </ul>
+              {showOverlay && (
+                <SeatMapOverlay
+                  auditoriumId={auditoriumId}
+                  onClose={() => {
+                    setShowOverlay(false);
+                    navigate("/add-theatre");
+                  }}
+                />
+              )}
             </div>
           )}
 
