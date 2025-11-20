@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/Navbar';
+import NavBar from '../components/Navbar.jsx';
 import {getTMDBMovieByID} from "../api-logic/moviesAPI.jsx";
 import AddMovieForm from '../components/AddMovie/AddMovieForm.jsx';
 import SearchMovieForm from "../components/AddMovie/SearchMovieForm.jsx";
