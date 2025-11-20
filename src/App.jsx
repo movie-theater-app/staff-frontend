@@ -4,6 +4,7 @@ import StaffDashboard from "./pages/StaffDashboard";
 import AddTheatre from './pages/AddTheatre';
 import AddMovie from "./pages/AddMovie.jsx";
 import ScheduleMovie from "./pages/ScheduleMovie.jsx";
+import EditMovie from "./pages/EditMovie.jsx";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Route path="/add-theatre" element={<AddTheatre />} />
         <Route path="/add-movie" element={<AddMovie />} />
         <Route path="/movie/:id/schedule" element={<ScheduleMovie />} />
+        <Route path="/movie/:movie_id/edit" element={<EditMovie />} />
     </Routes>
   )
 }

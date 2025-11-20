@@ -71,3 +71,20 @@ export async function getMovieByID(movieID) {
     }
     return response.json();
 }
+
+export async function updateMovie(movie_id, movieData) {
+
+
+    const response = await fetch(`${BASE_URL}/${movie_id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movieData),
+    });
+
+    if(!response.ok){
+        throw new Error("Failed to update movie in the database");
+    }
+    return response.json();
+}

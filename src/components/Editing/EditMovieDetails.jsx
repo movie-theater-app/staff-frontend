@@ -1,59 +1,6 @@
-import React, {useEffect} from 'react';
-import {importMovie} from "../../api-logic/moviesAPI.jsx";
-import {useNavigate} from "react-router-dom";
-import "../../CSS/AddMovie.css"
-function AddMovieForm({movieData, formHandler}) {
+import React from 'react';
 
-    const [id, setId] = React.useState('');
-    const [title, setTitle] = React.useState('');
-    const [description, setDescription] = React.useState('');
-    const [trailer, setTrailer] = React.useState('');
-    const [genre, setGenre] = React.useState('');
-    const [duration, setDuration] = React.useState('');
-    const [poster, setPoster] = React.useState('');
-    const [ageRating, setAgeRating] = React.useState('');
-
-    const navigate = useNavigate();
-    async function formHandler(e) {
-        e.preventDefault();
-        if (duration <= 0){
-            alert("Please enter a valid duration, it can not be less than zero");
-            throw new Error ('Duration can not be less than zero');
-        }
-        try {
-            const movie = {
-                id,
-                title,
-                description,
-                trailer_url: trailer,
-                genre,
-                duration_minutes: duration,
-                poster_url: poster,
-                age_rating: ageRating };
-            const result = await importMovie(movie);
-            if (!result){
-                alert("Can not add this movie");
-                throw new Error('Failed to add movie');
-            }
-            navigate(`/movie/${movie.id}/schedule`);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    useEffect(() => {
-        setId( movieData.id || '');
-        setTitle(movieData.title || '');
-        setDescription(movieData.description || '');
-        setTrailer(movieData.trailer_url || '');
-        setGenre(movieData.genre || '');
-        setDuration(movieData.duration_minutes || '');
-        setPoster(movieData.poster_url || '');
-        setAgeRating(movieData.age_rating || '');
-        console.log(movieData.id);
-        console.log(movieData.title || '');
-    }, [movieData])
-
+function EditMovieDetails(props) {
     return (
         <div className="add-movie-form-div">
             <form onSubmit={formHandler}>
@@ -107,7 +54,7 @@ function AddMovieForm({movieData, formHandler}) {
                         name="trailer"
                         placeholder="Enter the trailer URL"
                         value={trailer}
-                        onChange={e => setTrailer(e.target.value)}
+                        onChange={e => setTrailer(e.target.value)}ç
                         required
                     />
                 </div>
@@ -149,4 +96,4 @@ function AddMovieForm({movieData, formHandler}) {
     );
 }
 
-export default MovieForm;
+export default EditMovieDetails;

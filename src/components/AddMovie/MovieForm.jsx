@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
-import {importMovie} from "../../api-logic/moviesAPI.jsx";
 import {useNavigate} from "react-router-dom";
 import "../../CSS/AddMovie.css"
-function AddMovieForm({movieData, formHandler}) {
+function MovieForm({movieData, submitHandler}) {
 
     const [id, setId] = React.useState('');
     const [title, setTitle] = React.useState('');
@@ -14,32 +13,6 @@ function AddMovieForm({movieData, formHandler}) {
     const [ageRating, setAgeRating] = React.useState('');
 
     const navigate = useNavigate();
-    async function formHandler(e) {
-        e.preventDefault();
-        if (duration <= 0){
-            alert("Please enter a valid duration, it can not be less than zero");
-            throw new Error ('Duration can not be less than zero');
-        }
-        try {
-            const movie = {
-                id,
-                title,
-                description,
-                trailer_url: trailer,
-                genre,
-                duration_minutes: duration,
-                poster_url: poster,
-                age_rating: ageRating };
-            const result = await importMovie(movie);
-            if (!result){
-                alert("Can not add this movie");
-                throw new Error('Failed to add movie');
-            }
-            navigate(`/movie/${movie.id}/schedule`);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     useEffect(() => {
         setId( movieData.id || '');
@@ -149,4 +122,4 @@ function AddMovieForm({movieData, formHandler}) {
     );
 }
 
-export default MovieForm;
+export default AddMovieForm;
