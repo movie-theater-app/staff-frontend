@@ -1,0 +1,134 @@
+:root {
+    --primary:#b8f4f8;
+    --button: #5ea9b8;
+}
+
+.add-movie-form-div {
+    background-color: var(--primary);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 600px;
+    max-height: 710px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    align-items: center;
+    color: black;
+    flex: 1;
+    height: fit-content;
+}
+.add-movie-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+
+.form-field {
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+.form-field > label {
+    align-self: flex-start;
+    margin-bottom: 0.75rem;
+}
+.form-grouping {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+#description-input {
+    min-height: 100px;
+    text-align: start;
+    padding: 0.5rem;
+}
+
+.add-movie-div button {
+    background-color: var(--button);
+    border: 1px solid black;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    align-self: center;
+    color: white;
+    cursor: pointer;
+}
+.add-movie-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+.add-movie-form-div textarea {
+    font-family: inherit;
+    font-size: inherit;
+    resize: none;
+    border-radius: 8px;
+}
+/* THIS NEXT PART IS FOR SEARCH MOVIE FORM */
+
+.search-movie-div {
+    height: 710px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    padding: 2rem 2rem 3rem 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+}
+.search-movie-list{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    height: fit-content;
+    overflow-y: scroll;
+}
+.search-input-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+#movie-search-input {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.search-movie-div button {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+.search-movie-div .search-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.search-movie-list .movie-li-btn {
+    max-width: 100px;
+    margin: 0;
+}
+
+.search-movie-div .add-movie-scratch-btn {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+.movie-li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    gap: 30px;
+    padding: 10px;
+    width: 100%;
+}
+
+

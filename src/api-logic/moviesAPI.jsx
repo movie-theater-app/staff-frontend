@@ -29,7 +29,7 @@ export async function importMovie(movieData) {
         while (exists && attempts <= maxAttempts) {
             attempts++;
             const randomNumber = Math.floor(Math.random() * 9999) + 1;
-            newID = randomNumber.toString().padStart(3, "0");
+            newID = randomNumber.toString().padStart(5, "0");
 
             try {
                 const existingMovie = await getTMDBMovieByID(newID);
@@ -59,6 +59,15 @@ export async function importMovie(movieData) {
 
     if(!response.ok){
         throw new Error("Failed to import movie to the database");
+    }
+    return response.json();
+}
+
+export async function getMovieByID(movieID) {
+    const response = await fetch(`${BASE_URL}/${movieID}`);
+
+    if(!response.ok){
+        throw new Error("Failed to fetch movie from database by ID");
     }
     return response.json();
 }

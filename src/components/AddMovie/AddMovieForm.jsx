@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {importMovie} from "../../api-logic/moviesAPI.jsx";
 import {useNavigate} from "react-router-dom";
-
+import "../../CSS/AddMovie.css"
 function AddMovieForm({movieData}) {
 
     const [id, setId] = React.useState('');
@@ -16,6 +16,10 @@ function AddMovieForm({movieData}) {
     const navigate = useNavigate();
     async function formHandler(e) {
         e.preventDefault();
+        if (duration <= 0){
+            alert("Please enter a valid duration, it can not be less than zero");
+            throw new Error ('Duration can not be less than zero');
+        }
         try {
             const movie = {
                 id,
@@ -31,7 +35,7 @@ function AddMovieForm({movieData}) {
                 alert("Can not add this movie");
                 throw new Error('Failed to add movie');
             }
-            navigate(`/movie/schedule/${movie.id}`);
+            navigate(`/movie/${movie.id}/schedule`);
         } catch (error) {
             console.log(error);
         }
@@ -51,91 +55,95 @@ function AddMovieForm({movieData}) {
     }, [movieData])
 
     return (
-        <div style={{
-            color: 'white',
-        }}>
+        <div className="add-movie-form-div">
+            <form onSubmit={formHandler}>
 
-            <form onSubmit={formHandler} style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '15px',
-            }}>
-                <label htmlFor="titleInput">Title</label>
-                <input type="text" id="titleInput" placeholder={"Enter the title"} name="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+                <div className="form-field">
+                    <label htmlFor="title-input">Title</label>
+                    <input type="text" id="title-input" placeholder={"Enter the title"} name="title" value={title} onChange={(e) => setTitle(e.target.value)} required/>
+                </div>
+                <div className="form-field">
+                    <label htmlFor="genre-input">Genre</label>
+                    <input
+                        type="text"
+                        id="genre-input"
+                        name="genre"
+                        placeholder="Enter genre"
+                        value={genre}
+                        onChange={e => setGenre(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-grouping">
+                    <div className="form-field">
+                        <label htmlFor="age-rating-input">Age Rating</label>
+                        <input
+                            type="text"
+                            id="age-rating-input"
+                            name="ageRating"
+                            placeholder="Enter age rating"
+                            value={ageRating}
+                            onChange={e => setAgeRating(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-field">
+                        <label htmlFor="duration-input">Duration (minutes)</label>
+                        <input
+                            type="number"
+                            id="duration-input"
+                            name="duration"
+                            placeholder="Enter duration"
+                            value={duration}
+                            onChange={e => setDuration(e.target.value)}
+                            required
+                        />
+                    </div>
+                </div>
+                <div className="form-field"> <label htmlFor="trailer-input">Trailer URL</label>
+                    <input
+                        type="text"
+                        id="trailer-input"
+                        name="trailer"
+                        placeholder="Enter the trailer URL"
+                        value={trailer}
+                        onChange={e => setTrailer(e.target.value)}ç
+                        required
+                    />
+                </div>
 
-                <label htmlFor="descriptionInput">Description</label>
-                <input
-                    type="text"
-                    id="descriptionInput"
-                    name="description"
-                    placeholder="Enter the description"
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                    required
-                />
-
-                <label htmlFor="genreInput">Genre</label>
-                <input
-                    type="text"
-                    id="genreInput"
-                    name="genre"
-                    placeholder="Enter genre"
-                    value={genre}
-                    onChange={e => setGenre(e.target.value)}
-                    required
-                />
-
-                <label htmlFor="ageRatingInput">Age Rating</label>
-                <input
-                    type="text"
-                    id="ageRatingInput"
-                    name="ageRating"
-                    placeholder="Enter age rating"
-                    value={ageRating}
-                    onChange={e => setAgeRating(e.target.value)}
-                    required
-                />
-
-                <label htmlFor="durationInput">Duration (minutes)</label>
-                <input
-                    type="number"
-                    id="durationInput"
-                    name="duration"
-                    placeholder="Enter duration"
-                    value={duration}
-                    onChange={e => setDuration(e.target.value)}
-                    required
-                />
-
-
-                <label htmlFor="trailerInput">Trailer URL</label>
-                <input
-                    type="text"
-                    id="trailerInput"
-                    name="trailer"
-                    placeholder="Enter the trailer URL"
-                    value={trailer}
-                    onChange={e => setTrailer(e.target.value)}ç
-                    required
-                />
-
-
-
-                <label htmlFor="posterInput">Poster URL</label>
-                <input
-                    type="text"
-                    id="posterInput"
-                    name="poster"
-                    placeholder="Enter poster URL"
-                    value={poster}
-                    onChange={e => setPoster(e.target.value)}
-                    required
-                />
+                <div className="form-field">
+                    <label htmlFor="poster-input">Poster URL</label>
+                    <input
+                        type="text"
+                        id="poster-input"
+                        name="poster"
+                        placeholder="Enter poster URL"
+                        value={poster}
+                        onChange={e => setPoster(e.target.value)}
+                        required
+                    />
+                </div>
 
 
+                <div className="form-field">
+                    <label htmlFor="description-input">Description</label>
+                    <textarea
+                        id="description-input"
+                        name="description"
+                        placeholder="Enter the description"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                        required
+                    />
+                </div>
 
-                <button type="submit">Add New Movie</button>
+
+
+
+
+
+                <button className="add-movie-btn"type="submit">Save New Movie</button>
             </form>
         </div>
     );

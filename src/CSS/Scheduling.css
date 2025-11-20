@@ -1,0 +1,62 @@
+:root {
+    --primary:#b8f4f8;
+    --button: #5ea9b8;
+}
+.scheduling-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.scheduling-container button {
+    background-color: var(--button);
+    border: 1px solid black;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    align-self: center;
+    color: white;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+.scheduling-div form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    background-color: var(--primary);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: black;
+    flex: 1;
+    height: fit-content;
+}
+.scheduling-div form label {
+    display: block;
+    margin-bottom: 15px;
+    align-self: center;
+}
+
+.times-container{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+
+/* SCHEDULING CONFIRMATION */
+
+.schedule-theaters-cont {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow-y: scroll;
+    align-items: start;
+    justify-content: start;
+    color:white;
+    gap: 75px;
+}

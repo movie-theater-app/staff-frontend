@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar';
 import {getTMDBMovieByID} from "../api-logic/moviesAPI.jsx";
 import AddMovieForm from '../components/AddMovie/AddMovieForm.jsx';
 import SearchMovieForm from "../components/AddMovie/SearchMovieForm.jsx";
-
+import "../CSS/AddMovie.css"
 
 function AddMovie() {
 
@@ -28,17 +28,9 @@ function AddMovie() {
     return (
         <div>
             <NavBar showLinks={true}/>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                width: '100%',
-            }}>
+            <div className='add-movie-div'>
                 <SearchMovieForm getMovieByID={handleGetMovieByID}/>
-                <div style={{
-                    flex: '1',
-                }}>
                     <AddMovieForm movieData={movieData}/>
-                </div>
             </div>
 
 
