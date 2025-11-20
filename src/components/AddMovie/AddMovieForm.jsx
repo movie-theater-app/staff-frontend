@@ -149,4 +149,4 @@ function AddMovieForm({movieData, formHandler}) {
     );
 }
 
-export default MovieForm;
+export default AddMovieForm;

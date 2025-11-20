@@ -4,7 +4,7 @@ import StaffDashboard from "./pages/StaffDashboard";
 import AddTheatre from './pages/AddTheatre';
 import AddMovie from "./pages/AddMovie.jsx";
 import ScheduleMovie from "./pages/ScheduleMovie.jsx";
-import SeatMapPage from "./pages/SeatMapPage";
+import SeatMapPage from "./pages/SeatMapPage.jsx";
 import EditMovie from "./pages/EditMovie.jsx"
 
 
