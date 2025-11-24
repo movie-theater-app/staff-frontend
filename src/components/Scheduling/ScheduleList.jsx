@@ -53,9 +53,9 @@ function ScheduleList({movie, reload} ) {
             {schedulesByTheater.length > 0 ? (
                 <div className="schedule-theaters-cont">
                     {schedulesByTheater.map((theater) => (
-                        <div>
-                            <h5>{theater.theater_name}</h5>
-                            <ul style={{ listStyleType: 'none' }}>
+                        <div className="schedule-list-div">
+                            <h3>{theater.theater_name}</h3>
+                            <ul>
                                 {theater.schedules.map((s) => (
                                     <li className="schedule-li" key={s.id}>{`${s.screening_date}, ${s.start_time.slice(0,5)} - ${s.end_time.slice(0,5)}. ${s.auditorium_name}`}
                                     <button onClick={() => handleDelete(s.id)}>X</button>

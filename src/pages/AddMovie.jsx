@@ -35,7 +35,7 @@ function AddMovie() {
                 alert("Can not add this movie");
                 throw new Error('Failed to add movie');
             }
-            navigate(`/movie/${movie.id}/schedule`);
+            navigate(`/movie/${result.id}/schedule`);
         } catch (error) {
             console.log(error);
         }
