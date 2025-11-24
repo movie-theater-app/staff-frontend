@@ -20,35 +20,6 @@ export async function getTMDBMovieByID(movieID) {
 
 export async function importMovie(movieData) {
 
-    let newID;
-    let exists = true;
-    let attempts = 0;
-    const maxAttempts = 10;
-
-    if(!movieData.id){
-        while (exists && attempts <= maxAttempts) {
-            attempts++;
-            const randomNumber = Math.floor(Math.random() * 9999) + 1;
-            newID = randomNumber.toString().padStart(5, "0");
-
-            try {
-                const existingMovie = await getTMDBMovieByID(newID);
-
-                if (!existingMovie) {
-                    exists = false;
-                    movieData.id = newID;
-                } else {
-                    console.log(`ID ${newID} already exists, retrying...`);
-                }
-
-            } catch (error) {
-                exists = false;
-                movieData.id = newID;
-            }
-        }
-    }
-
-
     const response = await fetch(`${BASE_URL}/import`, {
         method: "POST",
         headers: {
@@ -74,7 +45,8 @@ export async function getMovieByID(movieID) {
 
 export async function updateMovie(movie_id, movieData) {
 
-
+    console.log(movie_id);
+    console.log(movieData);
     const response = await fetch(`${BASE_URL}/${movie_id}`, {
         method: "PUT",
         headers: {
@@ -85,6 +57,15 @@ export async function updateMovie(movie_id, movieData) {
 
     if(!response.ok){
         throw new Error("Failed to update movie in the database");
+    }
+    return response.json();
+}
+
+export async function getAllMovies() {
+    const response = await fetch(`${BASE_URL}`);
+
+    if(!response.ok){
+        throw new Error("Failed to get all the movies in the database");
     }
     return response.json();
 }

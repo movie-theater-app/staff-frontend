@@ -20,6 +20,10 @@
     padding: 1rem 2rem;
     font-size: 1rem;
 }
+.scheduling-div {
+    margin-top: 2rem;
+    color: white;
+}
 .scheduling-div form {
     display: flex;
     flex-direction: column;
@@ -40,6 +44,12 @@
     margin-bottom: 15px;
     align-self: center;
 }
+.scheduling-div .submit-button {
+    padding: 1rem;
+    background-color: var(--button);
+    border-radius: 8px;
+    color: white;
+}
 
 .times-container{
     display: flex;
@@ -48,7 +58,7 @@
 }
 
 
-/* SCHEDULING CONFIRMATION */
+/* SCHEDULING LIST */
 
 .schedule-theaters-cont {
     margin-top: 5rem;
@@ -58,5 +68,41 @@
     align-items: start;
     justify-content: start;
     color:white;
-    gap: 75px;
+    gap: 125px;
+}
+.schedule-list-div {
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.schedule-list-div ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    list-style-type: none;
+    margin-top: 25px;
+}
+
+.schedule-li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: max-content;
+    background-color: var(--primary);
+    color: black;
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.schedule-li button{
+    padding: 5px 7.5px;
+    background-color: var(--button);
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
 }

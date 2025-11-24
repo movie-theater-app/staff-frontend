@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react';
 import { useParams } from 'react-router';
-import AddSchedulingForm from "../components/Scheduling/AddSchedulingForm.jsx";
+import SchedulingForm from "../components/Scheduling/SchedulingForm.jsx";
 import Navbar from "../components/Navbar.jsx";
 import {getMovieByID} from "../api-logic/moviesAPI.jsx";
-import ScheduleConfirmation from "../components/Scheduling/ScheduleConfirmation.jsx";
+import ScheduleList from "../components/Scheduling/ScheduleList.jsx";
+import Schedule from "../components/Scheduling/Schedule.jsx";
 
 function ScheduleMovie() {
     const { id } = useParams();
 
-    const [scheduleConfirmed, setScheduleConfirmed] = React.useState(false);
     const [movie, setMovie] = React.useState(null);
-    const [schedules, setSchedules] = React.useState([]);
 
     async function loadMovie () {
         try {
@@ -22,9 +21,6 @@ function ScheduleMovie() {
         }
     }
 
-    function handleScheduled () {
-        setScheduleConfirmed(true);
-    }
 
     useEffect(() => {
         loadMovie();
@@ -35,15 +31,8 @@ function ScheduleMovie() {
             <Navbar showLinks={true}/>
             {!movie ? (
                 <div>Loading Movie...</div>
-            ) : scheduleConfirmed && movie ? (
-                <div className="scheduling-confirmation-container">
-                    <ScheduleConfirmation movie={movie} />
-                </div>
-
             ) : (
-                <div className="scheduling-container">
-                    <AddSchedulingForm movie={movie} onScheduled={handleScheduled} />
-                </div>
+                <Schedule movie={movie}/>
             )}
 
         </div>

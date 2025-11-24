@@ -15,10 +15,9 @@ function App() {
         <Route path="/" element={<StaffDashboard />} />
         <Route path="/add-theatre" element={<AddTheatre />} />
         <Route path="/add-movie" element={<AddMovie />} />
-        <Route path="/movie/schedule/:id" element={<ScheduleMovie />} />
         <Route path="/add-theatre/seat-map/:auditoriumId" element={<AddTheatre showOverlayRoute />} />
         <Route path="/movie/:id/schedule" element={<ScheduleMovie />} />
-        <Route path="/movie/:movie_id/edit" element={<EditMovie />} />
+        <Route path="/edit-movie" element={<EditMovie />} />
     </Routes>
   )
 }

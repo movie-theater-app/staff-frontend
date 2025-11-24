@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {getAllTheaters, getAuditoriums} from "../../api-logic/getTheatersApi.jsx";
-import {getScheduleByMovieAndTheater} from "../../api-logic/schedulingAPI.jsx";
+import {deleteSchedule, getScheduleByMovieAndTheater} from "../../api-logic/schedulingAPI.jsx";
 
-function ScheduleConfirmation( {movie} ) {
+function ScheduleList({movie, reload} ) {
 
     const [schedulesByTheater, setSchedulesByTheater] = useState([]);
 
@@ -36,26 +36,30 @@ function ScheduleConfirmation( {movie} ) {
         );
 
         setSchedulesByTheater(getSchedulesByTheaters);
-        console.log(getSchedulesByTheaters);
 
+    }
 
+    async function handleDelete (id) {
+        await deleteSchedule(id);
+        loadSchedules();
     }
 
     useEffect(()=>{
         loadSchedules();
-    }, [movie]);
+    }, [movie, reload]);
 
     return (
         <div className="schedule-confirmation-div">
-            <h3>Schedule for {movie.title} has been created!</h3>
             {schedulesByTheater.length > 0 ? (
                 <div className="schedule-theaters-cont">
                     {schedulesByTheater.map((theater) => (
-                        <div>
-                            <h5>{theater.theater_name}</h5>
+                        <div className="schedule-list-div">
+                            <h3>{theater.theater_name}</h3>
                             <ul>
                                 {theater.schedules.map((s) => (
-                                    <li key={s.id}>{`${s.screening_date}, ${s.start_time.slice(0,5)} - ${s.end_time.slice(0,5)}. ${s.auditorium_name}`}</li>
+                                    <li className="schedule-li" key={s.id}>{`${s.screening_date}, ${s.start_time.slice(0,5)} - ${s.end_time.slice(0,5)}. ${s.auditorium_name}`}
+                                    <button onClick={() => handleDelete(s.id)}>X</button>
+                                    </li>
                                 ))}
                             </ul>
                         </div>
@@ -68,4 +72,4 @@ function ScheduleConfirmation( {movie} ) {
     );
 }
 
-export default ScheduleConfirmation;
+export default ScheduleList;

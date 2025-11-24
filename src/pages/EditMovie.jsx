@@ -1,58 +1,43 @@
-import React, {useEffect} from 'react';
-import {getMovieByID, updateMovie} from "../api-logic/moviesAPI.jsx";
-import MovieForm from "../components/AddMovie/MovieForm.jsx";
-import {useParams} from "react-router";
+import React from 'react';
+import {getMovieByID, } from "../api-logic/moviesAPI.jsx";
+import ChooseMovieEdit from "../components/Editing/ChooseMovieEdit.jsx";
+import Navbar from "../components/Navbar.jsx";
+import EditMovieDetails from "../components/Editing/EditMovieDetails.jsx";
+import Schedule from "../components/Scheduling/Schedule.jsx";
 
 function EditMovie() {
-    const { movie_id } = useParams();
 
     const [movieData, setMovieData] = React.useState();
+    const [movieChoosen, setMovieChoosen] = React.useState(false);
+    const [editSchedule, setEditSchedule] = React.useState(false);
 
-    async function loadMovieData() {
-        const data = await getMovieByID(movie_id);
-        setMovieData(data);
+    async function chooseMovie(id) {
+        if(!id) return;
+        const movie = await getMovieByID(id);
+        setMovieData(movie);
+        setMovieChoosen(true);
     }
 
-    async function submitHandler () {
-
+    function confirmDetails(movie) {
+        setMovieData(movie)
+        setEditSchedule(true);
     }
 
-    async function formHandler(e, {movie}) {
-        e.preventDefault();
-        if (movie.duration <= 0){
-            alert("Please enter a valid duration, it can not be less than zero");
-            throw new Error ('Duration can not be less than zero');
-        }
-        try {
-            const updatedMovie = {
-                id : movie.id,
-                title: movie.title,
-                description: movie.description,
-                trailer_url: movie.trailer,
-                genre: movie.genre,
-                duration_minutes: movie.duration,
-                poster_url: movie.poster,
-                age_rating: movie.ageRating };
-            const result = await updateMovie(updatedMovie);
-            if (!result){
-                alert("Can not update this movie");
-                throw new Error('Failed to update movie');
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    useEffect(() => {
-        loadMovieData();
-    }, [movie_id])
 
     return (
         <div>
-            {movieData ? (
-                <MovieForm movieData={movieData} formHandler={formHandler} />
+            <Navbar showLinks={true}/>
+            {movieData && movieChoosen && !editSchedule ? (
+                <EditMovieDetails movieData={movieData} confirmChange={confirmDetails}/>
+            ) : !movieChoosen ? (
+                <ChooseMovieEdit chooseMovie={chooseMovie} />
+            ) : movieData && movieChoosen && editSchedule ? (
+                <div>
+                    <Schedule movie={movieData} />
+                </div>
+
             ) : (
-                <div>There is no movie to edit</div>
+                <p>There is an error to edit the movie.</p>
             )}
         </div>
     );

@@ -31,11 +31,11 @@ function SearchMovieForm({getMovieByID} ) {
                         {movie.posterPath ? <img src={movie.posterPath}/> : ""}
                         <p>{movie.title}</p>
                         <p>{movie.releaseDate}</p>
-                        <button className="movie-li-btn"onClick={() => getMovieByID(movie.id)}>Add new movie</button>
+                        <button className="movie-li-btn" onClick={() => getMovieByID(movie.id)}>Add new movie</button>
                     </li>
                 })}
             </ul>
-            <button className="add-movie-scratch-btn"onClick={() => getMovieByID('')}>Add New Movie From Scratch</button>
+            <button className="add-movie-scratch-btn" onClick={() => getMovieByID('')}>Add New Movie From Scratch</button>
         </div>
     );
 }

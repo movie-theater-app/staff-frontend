@@ -19,7 +19,7 @@ export default function StaffDashboard() {
           <button className="button" onClick={() => navigate("/add-movie")}>
               Add movie
           </button>
-          <button className="button">Edit movie</button>
+          <button className="button" onClick={() => navigate("/edit-movie")}>Edit movie</button>
           <button className="button" onClick={() => navigate("/add-theatre")}>
             Add theatre
           </button>

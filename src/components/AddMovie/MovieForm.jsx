@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import {useNavigate} from "react-router-dom";
 import "../../CSS/AddMovie.css"
-function MovieForm({movieData, submitHandler}) {
+function MovieForm({movieData, handleSubmit}) {
 
     const [id, setId] = React.useState('');
     const [title, setTitle] = React.useState('');
@@ -12,7 +11,24 @@ function MovieForm({movieData, submitHandler}) {
     const [poster, setPoster] = React.useState('');
     const [ageRating, setAgeRating] = React.useState('');
 
-    const navigate = useNavigate();
+
+    async function formHandler(e) {
+        e.preventDefault();
+        if (duration <= 0){
+            alert("Please enter a valid duration, it can not be less than zero");
+            throw new Error ('Duration can not be less than zero');
+        }
+        const movie = {
+            id,
+            title,
+            description,
+            trailer_url: trailer,
+            genre,
+            duration_minutes: duration,
+            poster_url: poster,
+            age_rating: ageRating };
+        await handleSubmit(movie);
+    }
 
     useEffect(() => {
         setId( movieData.id || '');
@@ -116,7 +132,7 @@ function MovieForm({movieData, submitHandler}) {
 
 
 
-                <button className="add-movie-btn"type="submit">Save New Movie</button>
+                <button className="add-movie-btn" type="submit">Save</button>
             </form>
         </div>
     );
