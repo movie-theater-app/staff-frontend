@@ -92,12 +92,12 @@ export default function AddTheatre() {
                 {confirmation.auditoriums.map((auditorium, index) => (
                   <li key={index}>
                     {auditorium.name} – {auditorium.seat_count} seats
-                    <span><button
+                    <button
                       className="view-seat-map"
                       onClick={() => handleViewSeats(auditorium)}
                     >
                       Seat map
-                    </button></span>
+                    </button>
                   </li>
                 ))}
               </ul>

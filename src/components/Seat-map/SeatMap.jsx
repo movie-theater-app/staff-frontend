@@ -120,7 +120,7 @@ const saveChanges = async () => {
       <SelectStatus />
       
       <h2>Seat map</h2>
-        <div className="seat-map-grid" style={{ gridTemplateColumns: `repeat(${maxColumns}, 40px)` }}>
+        <div className="seat-map-grid" style={{ "--max-columns": maxColumns }}>
           {seats.map((seat) => {
             const seatId = `${seat.row}${seat.number}`; 
             const seatChange = seatChanges[seatId] || {};
@@ -150,18 +150,7 @@ const saveChanges = async () => {
             );
   })}
         </div>
-       <p style={{
-            fontSize: "1rem", 
-            marginTop: "2rem", 
-            fontWeight: "bold", 
-            textAlign: "center", 
-            backgroundColor: "white", 
-            border: "1px solid green",
-            padding: "0.2rem",
-            borderRadius: "4px",
-            width: `min(${maxColumns * 50}px, 100%)`,
-            marginLeft: "auto",
-            marginRight: "auto"}}>
+       <p className="screen-label" style={{ width: `min(${maxColumns * 50}px, 100%)`}}>
           <MdOutlineHorizontalRule /> Screen <MdOutlineHorizontalRule />
         </p>
         {/* Seat action buttons with props */}
