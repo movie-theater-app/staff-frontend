@@ -5,7 +5,8 @@ import "../CSS/StaffDashboard.css";
 import Navbar from "../components/Navbar";
 
 export default function StaffDashboard() {
-  const user = { name: "Test-user" };
+
+  const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
   return (
