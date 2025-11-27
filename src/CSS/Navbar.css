@@ -28,8 +28,14 @@
   gap: 2rem;
   align-items: center;
   justify-content: center;
+  margin-left: 1rem;
 }
 
+.right-section {
+  display: flex;
+  align-items: center;
+  margin-right: 2.5rem;
+}
 .nav-links a {
   color: white;   
   text-decoration: none;
@@ -44,6 +50,19 @@
 .nav-links a:hover{
    border-bottom: 2px solid #16566F;
 }
+.logout-btn {
+  background: linear-gradient(to bottom, #bb0101d8 10%, rgba(134, 4, 4, 0.808) 100%) ;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 16px;
+  margin-left: 5rem;
+  color: white;
+  text-decoration: none;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(to bottom, #bb0c0cfd 10%, rgba(133, 1, 1, 0.808) 100%);
+} 
 
 .logo {
   width: 110px;
