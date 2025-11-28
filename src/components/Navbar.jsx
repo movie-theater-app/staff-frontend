@@ -16,7 +16,7 @@ export default function Navbar({ showLinks }) {
       </div>
       {showLinks && (
         <nav className="nav-links">
-          <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
+          <NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>
             <RiHome2Line style={{ fontSize: "2rem" }} />
           </NavLink>
           <NavLink to="/add-movie" className={({ isActive }) => isActive ? "active" : ""}>
@@ -34,7 +34,11 @@ export default function Navbar({ showLinks }) {
           <NavLink to="/statistics" className={({ isActive }) => isActive ? "active" : ""}>
             Statistics
           </NavLink>
-        </nav>
+          </nav>
+      )}  {showLinks && (
+       <div className="right-section">
+            <NavLink to="/logout" className="logout-btn">Logout</NavLink>
+          </div>
       )}
     </header>
   );
