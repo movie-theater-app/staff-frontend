@@ -6,7 +6,7 @@ export async function loginUser(email, password) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        //'Authorization': `Bearer ${token}`
+        //'Authorization': `Bearer ${token}` -- not needed for login, it's created during
       },
       body: JSON.stringify({ email, password }),
     });
@@ -17,17 +17,17 @@ export async function loginUser(email, password) {
       throw new Error(data.message || 'Login failed');
     }
 
-    // Tallennetaan token ja user localStorageen
+    // Save token and user to localStorage
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(data.user));
 
-    return data.user; // palautetaan käyttäjätiedot
+    return data.user; // return user info 
   } catch (err) {
     throw err;
   }
 }
 
-// Logout-funktio
+// Logout-function clears local storage immediately, but token is stored for 2h if app is open
 export function logoutUser() {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
