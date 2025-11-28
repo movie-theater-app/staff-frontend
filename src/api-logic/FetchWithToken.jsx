@@ -4,7 +4,7 @@ function getToken() {
   return localStorage.getItem('token');
 }
 
-export async function StaffFetchWithToken(endpoint, options = {}) {
+export async function FetchWithToken(endpoint, options = {}) {
   const token = getToken();
 
   const headers = {
@@ -31,7 +31,7 @@ export async function StaffFetchWithToken(endpoint, options = {}) {
 
     return data;
   } catch (err) {
-    console.error(`StaffFetchWithToken error on ${endpoint}:`, err);
+    console.error(`FetchWithToken error on ${endpoint}:`, err);
     throw err;
   }
 }

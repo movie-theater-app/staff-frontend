@@ -1,11 +1,11 @@
 
 // authentication helper function
-import { StaffFetchWithToken } from './staffFetchWithToken';
+import { FetchWithToken } from './FetchWithToken';
 //const BASE_URL = import.meta.env.VITE_BASE_URL;  // backend address
 
 export async function addTheatre(data) {
   try {
-    const response = await StaffFetchWithToken(`/theatres`, {
+    const response = await FetchWithToken(`/theatres`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data), // data = theatre_name, address, contact_information
@@ -18,7 +18,7 @@ export async function addTheatre(data) {
 }
 export async function addAuditorium(data) {
   try {
-    const response = await StaffFetchWithToken(`/theatres/auditoriums`, {
+    const response = await FetchWithToken(`/theatres/auditoriums`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data), // data = theatre_id, name, seat_count

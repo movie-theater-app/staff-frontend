@@ -1,11 +1,11 @@
 
 const VITE_BASE_URL = import.meta.env.VITE_BASE_URL; // e.g. http://localhost:3001/api
 // authentication helper function
-import { StaffFetchWithToken } from './staffFetchWithToken';
+import { FetchWithToken } from './FetchWithToken';
 
 export async function getSeats(auditoriumId) {
   try {
-    const response = await StaffFetchWithToken(`/seats/${auditoriumId}`);
+    const response = await FetchWithToken(`/seats/${auditoriumId}`);
     return response;
   } catch (error) {
     console.error(`Error fetching seats for auditorium ${auditoriumId}:`, error);
@@ -15,7 +15,7 @@ export async function getSeats(auditoriumId) {
 
 export async function createSeats(auditoriumId, seatCount) {
   try {
-    const response = await StaffFetchWithToken(`/seats/create`, {
+    const response = await FetchWithToken(`/seats/create`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       
@@ -37,7 +37,7 @@ export async function updateSeats(changes) {
     // update status
     if (change.newStatus === "reserved" || change.newStatus === "available") {
       requests.push(
-        StaffFetchWithToken(`/seats/${dbId}/status`, {
+        FetchWithToken(`/seats/${dbId}/status`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ status: change.newStatus })
@@ -47,7 +47,7 @@ export async function updateSeats(changes) {
     // update seat_type
     if (change.newSeatType === "disabled" || change.newSeatType === "normal") {
       requests.push(
-        StaffFetchWithToken(`/seats/${dbId}/type`, {
+        FetchWithToken(`/seats/${dbId}/type`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ seat_type: change.newSeatType })
