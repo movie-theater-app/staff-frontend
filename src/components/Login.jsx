@@ -27,9 +27,10 @@ export default function Login() {
       }
       setTimeout(() => {
         navigate('/dashboard');
-      }, 1200);
-    } catch {
-      setError("Invalid credentials");
+      }, 1000);
+    } catch (error) {
+        console.error("Login error:", error);
+        setError("Invalid credentials");
     }
   };
 
@@ -41,6 +42,7 @@ export default function Login() {
           <input
             type="email"
             placeholder="Email"
+            autoComplete="new-email"
             value={email}
             onChange={event => setEmail(event.target.value)}
             required
@@ -48,6 +50,7 @@ export default function Login() {
           <input
             type="password"
             placeholder="Password"
+            autoComplete="new-password"
             value={password}
             onChange={event => setPassword(event.target.value)}
             required
