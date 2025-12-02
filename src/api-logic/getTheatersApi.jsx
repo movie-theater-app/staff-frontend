@@ -1,50 +1,51 @@
 const BASE_URL = import.meta.env.VITE_BASE_URL + "/theatres";
+import { FetchWithToken } from './FetchWithToken';
 
 export async function getAllTheaters(){
-    const response = await fetch(`${BASE_URL}`);
+    const response = await FetchWithToken(`/theatres`);
 
-    if(!response.ok){
+    if(!response){
         throw new Error("Failed fetching all theaters");
     }
-    return response.json();
+    return response;
 }
 
 export async function getTheaterById(id){
-    const response = await fetch(`${BASE_URL}/${id}`);
+    const response = await FetchWithToken(`/theatres/${id}`);
 
-    if(!response.ok){
+    if(!response){
         throw new Error(`Failed fetching theater with id: ${id}`);
     }
-    return response.json();
+    return response;
 }
 
 export async function getAuditoriums(){
-    const response = await fetch(`${BASE_URL}/auditoriums`);
+    const response = await FetchWithToken(`/theatres/auditoriums`);
 
 
-    if(!response.ok){
+    if(!response){
         throw new Error(`Failed fetching all auditoriums`);
     }
-    return response.json();
+    return response;
 }
 
 export async function getAuditoriumById(id){
-    const response = await fetch(`${BASE_URL}/auditoriums/${id}`);
+    const response = await FetchWithToken(`/theatres/auditoriums/${id}`);
 
-    if(!response.ok){
+    if(!response){
         throw new Error(`Failed fetching auditorium with id: ${id}`);
     }
 
-    return response.json();
+    return response;
 }
 
 export async function getAuditoriumByTheater(theaterId){
-    const response = await fetch(`${BASE_URL}/${theaterId}/auditoriums`);
+    const response = await FetchWithToken(`/theatres/${theaterId}/auditoriums`);
 
-    if(!response.ok){
+    if(!response){
         throw new Error(`Failed fetching auditoriums of theater with id: ${theaterId}`);
     }
 
-    return response.json();
+    return response;
 }
 
