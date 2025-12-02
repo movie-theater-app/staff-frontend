@@ -11,7 +11,7 @@ export async function loginUser(email, password) {
       body: JSON.stringify({ email, password }),
     });
 
-    //const data = await response.json();
+    // tries to read json reponse from backend -> if not json, sets data as empty object and prevents crash
     let data;
     try {
         data = await response.json();
