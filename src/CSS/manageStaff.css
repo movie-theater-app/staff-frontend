@@ -1,0 +1,165 @@
+
+.manage-staff-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  max-width: 1600px;
+  margin: 2rem auto;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.manage-staff-container h2 {
+  align-self: flex-start;  
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+.search-bar {
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  width: 15%; 
+  border-radius: 8px;
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 0.24);
+  border: 1px solid rgb(79, 185, 199);
+  color: white;
+  font-size: 0.9rem;  
+}
+.search-bar:focus {
+  outline: none;
+  box-shadow: none;
+}
+.manage-staff-container h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+.staff-management-wrapper {
+  display: flex;
+  gap: 6rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.staff-form-container {
+  flex: 2;               
+  min-width: 420px;      
+}
+
+.staff-list-container {
+  flex: 3;               
+  min-width: 700px; 
+  max-height: 800px; 
+  overflow-y: auto;     
+}
+
+.staff-form {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.13);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #55999e;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 750px; 
+  width: 100%;
+}
+
+.staff-form input,
+.staff-form select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #71cfcb;
+  font-size: 14px;
+  outline: none;
+  background-color: #f9f9f9de;
+  color: #292929;
+  width: 80%;
+  box-sizing: border-box;
+}
+
+.staff-form button {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  width: 80%;
+}
+
+.staff-form button {
+  background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
+  color: white;
+}
+.staff-form button:hover {
+  background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
+}
+.staff-form button.cancel-btn {
+  background: linear-gradient(to bottom, #c93434 15%, #911c1c 100%);
+  color: white;
+  margin-bottom: 2rem;
+  margin-top: -1.5rem;
+}
+.staff-form button.cancel-btn:hover {
+  background: linear-gradient(to bottom, #bd2b2b 15%, #831616 100%);
+}
+
+.staff-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.staff-list li {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  transition: 0.2s;
+  white-space: nowrap;      
+  overflow: auto;         
+}
+
+.staff-list li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.staff-list button {
+  background: linear-gradient(to bottom, #2fb2b6 10%, #135c66 100%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+  margin-left: 1rem;
+}
+
+.staff-edit-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.staff-edit-form input,
+.staff-edit-form select {
+  padding: 0.4rem 0.6rem;
+  font-size: 13px;
+  border-radius: 5px;
+  border: 1px solid #71cfcb;
+}
+
+.staff-edit-form button {
+  padding: 0.4rem 0.7rem;
+  font-size: 13px;
+}

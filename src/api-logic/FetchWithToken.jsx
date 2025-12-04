@@ -23,6 +23,13 @@ export async function FetchWithToken(endpoint, options = {}) {
     } catch {
       data = null; // backend doesn't return json
     }
+    // when token expired
+    if (response.status === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = "/";  // force redirect to login
+      return;
+    }
 
     if (!response.ok) {
       const errorMessage = data?.message || data?.error || `HTTP error ${response.status}`;
