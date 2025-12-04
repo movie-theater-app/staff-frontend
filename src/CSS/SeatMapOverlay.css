@@ -13,7 +13,8 @@
 }
 
 .overlay-content {
-  background: #b2eef0;
+  background: #fafafad0;
+  border: 1px solid rgb(72, 177, 190);
   color: white;
   padding: 4rem;
   border-radius: 8px;
@@ -24,7 +25,7 @@
   max-width: 1500px;
   text-align: center;
   position: relative;
-  box-shadow: 0 0 25px rgba(121, 141, 140, 0.5);
+  box-shadow: 2px 3px 35px rgba(62, 126, 131, 0.651);
 }
 
 .status-info {
@@ -118,8 +119,8 @@
   font-size: 1rem;
   font-weight: bold !important;
   padding: 0.8rem 2rem;
-  border: 1px solid rgb(0, 106, 148) !important;
-  background-color: #00bcdd !important;
+  border: 1px solid rgb(65, 141, 155) !important;
+  background-color: #4dc0cf !important;
 }
 .close-btn {
   position: absolute;

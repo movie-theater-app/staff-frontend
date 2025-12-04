@@ -64,10 +64,10 @@
 }
 
 .error-text {
-  background-color: rgba(255, 255, 255, 0.288);
+  background-color: rgba(255, 255, 255, 0.692);
   border-radius: 8px;
   padding: 0.7rem;
-  color: rgb(204, 5, 5);
+  color: rgb(155, 1, 1);
   margin-top: 12px;
   font-weight: bold;
 }
