@@ -2,9 +2,13 @@ import React from "react";
 import logo from "../assets/north-star-logo.jpg";
 import "../CSS/Navbar.css";
 import { RiHome2Line } from "react-icons/ri";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import Profile from "./Profile";
 
 export default function Navbar({ showLinks }) {
+  const location = useLocation(); // hook to get current path
+  const isRoot = location.pathname === "/"; // check if current path is "/" aka login-page
+  const user = JSON.parse(localStorage.getItem("user") || "null");
 
   return (
     <header className="staff-header">
@@ -14,6 +18,13 @@ export default function Navbar({ showLinks }) {
           North Star movie theater
         </h1>}
       </div>
+      {/* profile button not visible on login page */}
+      {!isRoot && (
+        <div style={{ marginRight: "5rem" }}>
+          <Profile />
+        </div>
+      )}
+      
       {showLinks && (
         <nav className="nav-links">
           <NavLink to="/dashboard" className={({ isActive }) => isActive ? "active" : ""}>
@@ -28,18 +39,20 @@ export default function Navbar({ showLinks }) {
           <NavLink to="/add-theatre" className={({ isActive }) => isActive ? "active" : ""}>
             Add theatre
           </NavLink>
-          <NavLink to="/manage-staff" className={({ isActive }) => isActive ? "active" : ""}>
-            Manage staff
-          </NavLink>
-          <NavLink to="/statistics" className={({ isActive }) => isActive ? "active" : ""}>
-            Statistics
-          </NavLink>
+
+          {/* admin-only routes */}
+          {user.role && (
+            <>
+              <NavLink to="/manage-staff" className={({ isActive }) => isActive ? "active" : ""}>
+                Manage staff
+              </NavLink>
+              <NavLink to="/statistics" className={({ isActive }) => isActive ? "active" : ""}>
+                Statistics
+              </NavLink>
+            </>
+          )}
           </nav>
-      )}  {showLinks && (
-       <div className="right-section">
-            <NavLink to="/logout" className="logout-btn">Logout</NavLink>
-          </div>
-      )}
+      )}  
     </header>
   );
 }

@@ -24,8 +24,14 @@ export default function StaffDashboard() {
           <button className="button" onClick={() => navigate("/add-theatre")}>
             Add theatre
           </button>
-          <button className="button">Manage staff</button>
-          <button className="button">Statistics</button>
+
+          {/* visible only for admin-users, assumption role=true */}
+          {user.role && (
+            <>
+            <button className="button" onClick={() => navigate("/manage-staff")}>Manage staff</button>
+            <button className="button">Statistics</button>
+            </>
+          )}
         </div>
       </main>
     </div>
