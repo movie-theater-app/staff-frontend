@@ -8,6 +8,7 @@ import "../CSS/manageStaff.css"
 export default function ManageStaff() {
   const [staffList, setStaffList] = useState([]);
   const [editingStaff, setEditingStaff] = useState(null);
+  const [searchMember, setSearchMember] = useState("");
 
   // fetch staff members on component mount
   useEffect(() => {
@@ -25,8 +26,9 @@ export default function ManageStaff() {
   // Add new staff
   async function handleAdd({ name, email, role }) {
     try {
-      await createStaff(name, email, role);
-      fetchStaff();
+      const newStaff = await createStaff(name, email, role);
+    // newest staff member to top of list
+    setStaffList(prev => [newStaff, ...prev]);
     } catch (err) {
       console.error("Failed to create staff:", err);
     }
@@ -42,15 +44,28 @@ export default function ManageStaff() {
     }
   }
 
+  // filter staff based on name or email
+  const filteredStaff = staffList.filter(staff =>
+    staff.name.toLowerCase().includes(searchMember.toLowerCase()) ||
+    staff.email.toLowerCase().includes(searchMember.toLowerCase())
+  );
+
   return (
     <div>
       <Navbar showLinks={true} />
         <div className="manage-staff-container">
          <h2>Current staff</h2>
+          <input
+          type="text"
+          placeholder="Search by name or email"
+          value={searchMember}
+          onChange={event => setSearchMember(event.target.value)}
+          className="search-bar"
+        />
          <div className="staff-management-wrapper">
             <div className="staff-list-container">
                 <StaffList
-                    staff={staffList}
+                    staff={filteredStaff}
                     onEditClick={(staff) => setEditingStaff(staff)}
                 />
             </div>

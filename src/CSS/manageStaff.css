@@ -2,20 +2,35 @@
 .manage-staff-container {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  max-width: 1200px;
-  min-width: 600px;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  max-width: 1600px;
+  margin: 2rem auto;
   color: white;
   font-family: Arial, sans-serif;
 }
 
 .manage-staff-container h2 {
-  text-align: center;
+  align-self: flex-start;  
   margin-bottom: 2rem;
   font-size: 2rem;
 }
-
+.search-bar {
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  width: 15%; 
+  border-radius: 8px;
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 0.24);
+  border: 1px solid rgb(79, 185, 199);
+  color: white;
+  font-size: 0.9rem;  
+}
+.search-bar:focus {
+  outline: none;
+  box-shadow: none;
+}
 .manage-staff-container h3 {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
@@ -24,15 +39,22 @@
 .staff-management-wrapper {
   display: flex;
   gap: 6rem;
-  flex-wrap: wrap; 
-  justify-content: flex-start;
+  justify-content: center;
+  width: 100%;
 }
 
-.staff-form-container,
-.staff-list-container {
-  flex: 1 1; 
-  min-width: 500px;
+.staff-form-container {
+  flex: 2;               
+  min-width: 420px;      
 }
+
+.staff-list-container {
+  flex: 3;               
+  min-width: 700px; 
+  max-height: 800px; 
+  overflow-y: auto;     
+}
+
 .staff-form {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.13);
@@ -42,7 +64,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  max-width: 500px;
+  max-width: 750px; 
+  width: 100%;
 }
 
 .staff-form input,
@@ -87,9 +110,9 @@
 }
 
 .staff-list {
-  margin-top: 1rem;
   list-style: none;
   padding: 0;
+  width: 100%;
 }
 
 .staff-list li {
@@ -119,10 +142,6 @@
   font-size: 13px;
   transition: 0.2s;
   margin-left: 1rem;
-}
-
-.staff-list button:hover {
-  opacity: 0.85;
 }
 
 .staff-edit-form {
