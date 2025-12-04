@@ -21,7 +21,9 @@
   box-shadow: inset 2px 3px 8px 4px #2d828b3d;
   border-radius: 5px;
   padding: 1.5rem;
-  width: 200px;
+  min-width: 200px;
+  max-width: 350px;
+  width: auto; 
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
