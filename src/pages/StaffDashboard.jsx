@@ -25,7 +25,8 @@ export default function StaffDashboard() {
             Add theatre
           </button>
           <button className="button">Manage staff</button>
-          <button className="button">Statistics</button>
+          <button className="button" onClick={() => navigate("/statistics")}>
+            Statistics</button>
         </div>
       </main>
     </div>

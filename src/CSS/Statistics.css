@@ -1,0 +1,130 @@
+/* Colors */
+h1, label, table, th, td {
+    color: white;
+}
+
+h3, p {
+    color: white;
+    font-weight: bold;
+}
+
+select, select option {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+thead tr {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Layout */
+
+h1 {
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+select {
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.statistics-summary {
+    border: 3px solid rgba(182, 216, 221, 0.4);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    width: 400px;
+    margin: auto;
+}
+
+.statistics-summary h3 {
+    font-size: 2em;
+}
+
+.statistics-summary p {
+    font-size: 1.3em;
+    margin: 6px 0;
+}
+
+.statistics-container {
+    padding: 20px;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.date-filter-row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    margin-right: 5px;
+}
+
+.movie-filter-row {
+    margin-bottom: 15px;
+}
+
+.additional-filters-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-with-search {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-with-search > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.search-input {
+    background-color: #222;
+    color: white;
+    border: 1px solid #555;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    width: 40vw;
+}
+
+.movie-select {
+    width: 40vw;
+}
+
+.search-input::placeholder {
+    color: #888;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #777;
+}
+
+.statistics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
