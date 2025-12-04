@@ -16,8 +16,8 @@
   flex-direction: column;
   top: 3rem;
   right: 0;
-  color: black;
-  background-color: rgba(255, 255, 255, 0.8);
+  color: black !important;
+  background-color: rgba(255, 255, 255, 0.795);
   border: 1px solid #71cfcb;
   box-shadow: inset 2px 3px 8px 4px #2d828b3d;
   border-radius: 5px;
@@ -28,12 +28,16 @@
   gap: 0.5rem;
   z-index: 9999;
 }
+.profile-dropdown p {
+  color: rgb(16, 72, 82) !important;
+  margin-bottom: 0.5rem;
+}
 
 .profile-dropdown input {
   width: 100%;
   padding: 0.5rem 0.75rem;
   border: 1px solid #71cfcb;
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 14px;
   margin-bottom: 0.5rem;
   outline: none;

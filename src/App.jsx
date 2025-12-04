@@ -7,7 +7,7 @@ import ScheduleMovie from "./pages/ScheduleMovie.jsx";
 import EditMovie from "./pages/EditMovie.jsx"
 import Login from './pages/LoginView.jsx';
 import Logout from "./components/Logout.jsx";
-import ManageStaff from "./pages/manageStaff.jsx";
+import ManageStaff from "./pages/ManageStaff.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Statistics from "./pages/Statistics.jsx";
 
@@ -57,9 +57,8 @@ function App() {
         <Route path="/statistics" element={
           <ProtectedRoute requireAdmin={true}>
             <Statistics />
-          </ProtectedRoute>
-        } 
-      /> 
+          </ProtectedRoute>} 
+        /> 
     </Routes>
   )
 }
