@@ -16,7 +16,6 @@
   flex-direction: column;
   top: 3rem;
   right: 0;
-  color: black !important;
   background-color: rgba(255, 255, 255, 0.795);
   border: 1px solid #71cfcb;
   box-shadow: inset 2px 3px 8px 4px #2d828b3d;
@@ -35,10 +34,10 @@
 
 .profile-dropdown input {
   width: 100%;
-  padding: 0.5rem 0.75rem;
+  padding: 0.4rem 0.75rem;
   border: 1px solid #71cfcb;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 0.5rem;
   outline: none;
   background-color: #f9f9f9;
@@ -55,6 +54,7 @@
 }
 
 .profile-dropdown button {
+  margin-top: 1rem;
   background: linear-gradient(to bottom, #2fb2b6 10%, #135c66 100%);
   color: white;
 }
