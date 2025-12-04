@@ -9,6 +9,7 @@ import Login from './pages/LoginView.jsx';
 import Logout from "./components/Logout.jsx";
 import ManageStaff from "./pages/manageStaff.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Statistics from "./pages/Statistics.jsx";
 
 
 function App() {
@@ -53,15 +54,12 @@ function App() {
             <ManageStaff/>
           </ProtectedRoute>}
         />
-        {/* <Route 
-        path="/statistics" 
-        element={
+        <Route path="/statistics" element={
           <ProtectedRoute requireAdmin={true}>
             <Statistics />
           </ProtectedRoute>
         } 
-      /> */}
-
+      /> 
     </Routes>
   )
 }

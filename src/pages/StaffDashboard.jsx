@@ -29,7 +29,7 @@ export default function StaffDashboard() {
           {user.role && (
             <>
             <button className="button" onClick={() => navigate("/manage-staff")}>Manage staff</button>
-            <button className="button">Statistics</button>
+            <button className="button" onClick={() => navigate("/statistics")}>Statistics</button>
             </>
           )}
         </div>
