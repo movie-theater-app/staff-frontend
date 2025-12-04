@@ -38,7 +38,7 @@ export async function FetchWithToken(endpoint, options = {}) {
 
     return data;
   } catch (err) {
-    console.error(`FetchWithToken error on ${endpoint}:`, err);
+    console.error(`FetchWithToken error on ${endpoint}:`, err.message || err);
     throw err;
   }
 }
