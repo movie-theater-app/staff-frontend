@@ -2,7 +2,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 import { FetchWithToken } from './FetchWithToken';
 
 export async function searchTMDBMovie(query){
-    const response = await fetch(`${BASE_URL}/movie/tmdb/search?query=${query}`);
+    const response = await FetchWithToken(`/movie/tmdb/search?query=${query}`);
 
     if(!response){
         throw new Error("Failed to fetch tmdb movie list for this movie search");
@@ -11,7 +11,7 @@ export async function searchTMDBMovie(query){
 }
 
 export async function getTMDBMovieByID(movieID) {
-    const response = await fetch(`${BASE_URL}/movie/tmdb/search/${movieID}`);
+    const response = await FetchWithToken(`/movie/tmdb/search/${movieID}`);
 
     if(!response){
         throw new Error("Failed to fetch tmdb get movie by ID");
