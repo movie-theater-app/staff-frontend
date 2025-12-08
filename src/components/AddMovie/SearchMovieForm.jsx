@@ -14,6 +14,7 @@ function SearchMovieForm({getMovieByID} ) {
             setMovieList(response);
         } catch(error){
             console.log(error);
+            console.error("Error fetching TMDB movies for query:", movieToSearch, error);
         }
     }
 
