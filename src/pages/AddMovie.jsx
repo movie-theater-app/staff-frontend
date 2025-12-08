@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar.jsx';
 import {getTMDBMovieByID, importMovie} from "../api-logic/moviesAPI.jsx";
-import AddMovieForm from '../components/AddMovie/AddMovieForm.jsx';
 import SearchMovieForm from "../components/AddMovie/SearchMovieForm.jsx";
 import "../CSS/AddMovie.css"
 import {useNavigate} from "react-router-dom";
@@ -46,7 +45,7 @@ function AddMovie() {
             <Navbar showLinks={true}/>
             <div className='add-movie-div'>
                 <SearchMovieForm getMovieByID={handleGetMovieByID}/>
-                    <MovieForm movieData={movieData} handleSubmit={handleSubmit}/>
+                    <MovieForm movieData={movieData} handleSubmit={handleSubmit} getMovieByID={handleGetMovieByID}/>
             </div>
 
 

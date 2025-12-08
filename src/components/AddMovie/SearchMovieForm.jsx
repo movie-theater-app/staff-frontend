@@ -22,8 +22,8 @@ function SearchMovieForm({getMovieByID} ) {
         <div className="search-movie-div">
             <div className="search-input-div">
                 <label htmlFor="movie-search-input" > Search for movie </label>
-                <input id="movie-search-input" onChange={e => setMovieToSearch(e.target.value)} value={movieToSearch} style={{width: '30%',}} />
-                <button className="search-btn" style={{width: '30%',}} onClick={handleMovieSearch}>Search</button>
+                <input id="movie-search-input" placeholder="Search movie by name" onChange={e => setMovieToSearch(e.target.value)} value={movieToSearch}/>
+                <button className="search-btn" onClick={handleMovieSearch}>Search</button>
             </div>
             <ul className="search-movie-list">
                 {movieList.filter(movie => movie.title && movie.releaseDate).map((movie) => {

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import "../../CSS/AddMovie.css"
-function MovieForm({movieData, handleSubmit}) {
+function MovieForm({movieData, handleSubmit, getMovieByID}) {
 
     const [id, setId] = React.useState('');
     const [title, setTitle] = React.useState('');
@@ -39,8 +39,6 @@ function MovieForm({movieData, handleSubmit}) {
         setDuration(movieData.duration_minutes || '');
         setPoster(movieData.poster_url || '');
         setAgeRating(movieData.age_rating || '');
-        console.log(movieData.id);
-        console.log(movieData.title || '');
     }, [movieData])
 
     return (
@@ -130,8 +128,7 @@ function MovieForm({movieData, handleSubmit}) {
 
 
 
-
-
+                <button className="Empty-button" type="button" onClick={() => getMovieByID('')}>Empty Data</button>
                 <button className="add-movie-btn" type="submit">Save</button>
             </form>
         </div>
