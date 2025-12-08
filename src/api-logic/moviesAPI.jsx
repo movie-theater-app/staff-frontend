@@ -4,7 +4,8 @@ import { FetchWithToken } from './FetchWithToken';
 export async function searchTMDBMovie(query){
     const response = await FetchWithToken(`/movie/tmdb/search?query=${query}`);
 
-    if(!response){
+    if(!response || !Array.isArray(response)) {
+        console.error("TMDB search returned invalid data:", response);
         throw new Error("Failed to fetch tmdb movie list for this movie search");
     }
     return response;
@@ -13,7 +14,8 @@ export async function searchTMDBMovie(query){
 export async function getTMDBMovieByID(movieID) {
     const response = await FetchWithToken(`/movie/tmdb/search/${movieID}`);
 
-    if(!response){
+    if(!response || typeof response !== 'object'){
+        console.error("TMDB get by ID returned invalid data:", response);
         throw new Error("Failed to fetch tmdb get movie by ID");
     }
     return response;
