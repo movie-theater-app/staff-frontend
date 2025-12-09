@@ -39,6 +39,9 @@ export default function Navbar({ showLinks }) {
           <NavLink to="/add-theatre" className={({ isActive }) => isActive ? "active" : ""}>
             Add theatre
           </NavLink>
+          <NavLink to="/edit-theatre" className={({ isActive }) => isActive ? "active" : ""}>
+            Edit theatre
+          </NavLink>
 
           {/* admin-only routes */}
           {user.role && (
