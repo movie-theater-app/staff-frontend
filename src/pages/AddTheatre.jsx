@@ -65,10 +65,15 @@ export default function AddTheatre() {
   const handleViewSeats = (auditorium) => {
     setAuditoriumId(auditorium.id);
     setShowOverlay(true);
-    navigate(`/add-theatre/seat-map/${auditorium.id}`);
+    //navigate(`/add-theatre/seat-map/${auditorium.id}`);
   };
   // for adding new theatre button
   const handleAddNew = () => setConfirmation(null);
+  
+  // edit theatre button
+  const handleEditTheatre = () => {
+    navigate('/edit-theatre');
+  }; 
 
   return (
     <div>
@@ -115,7 +120,7 @@ export default function AddTheatre() {
 
             <button
               className="btn"
-              onClick={() => alert("Edit feature coming soon!")}
+              onClick={handleEditTheatre}
             >
               Edit theatre
             </button>
