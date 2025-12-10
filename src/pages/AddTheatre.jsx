@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AddTheatreForm from "../components/AddTheatreForm";
+import AddTheatreForm from "../components/Theater/AddTheatreForm";
 import Navbar from "../components/Navbar";
 import { addTheatre, addAuditorium } from "../api-logic/addTheatreApi";
 import { createSeats } from "../api-logic/seatApi";
