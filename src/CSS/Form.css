@@ -74,7 +74,7 @@ h1 {
 }
 
 .btn:hover, .btn-add-auditorium:hover {
-  background: linear-gradient(var(--btn-primary-hover-top), var(--btn-primary-hover-bottom));
+  background: linear-gradient(var(--btn-primary-hover-top), var(--btn-primary-hover-bottom)) !important;
 }
 
 .btn-remove {
@@ -86,7 +86,10 @@ h1 {
   cursor: pointer;
   font-size: 0.8rem !important;
 }
-
+.edit-theatre-form .btn-remove  {
+  padding: 1rem;
+  font-size: 1rem !important;
+}
 .btn-remove:hover {
   background: linear-gradient(var(--btn-danger-hover-top), var(--btn-danger-hover-bottom));
 }

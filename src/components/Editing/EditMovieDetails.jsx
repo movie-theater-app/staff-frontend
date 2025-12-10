@@ -21,7 +21,7 @@ function EditMovieDetails({movieData, confirmChange}) {
     }
     return (
         <div>
-            <h1>EDIT THE DETAILS FOR THE MOVIE</h1>
+            <h1 style={{marginTop: "3rem"}}>Edit the details for the movie</h1>
             <MovieForm movieData={movieData} handleSubmit={handleSubmit}/>
         </div>
     );

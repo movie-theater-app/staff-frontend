@@ -80,7 +80,7 @@ export default function AddTheatre() {
         <Navbar showLinks={true}/>
 
         {!confirmation && (
-        <h1 style={{ color: "white", padding: "4rem 0 1rem 0" }}>Add new theatre</h1>
+        <h1>Add new theatre</h1>
       )}
 
         {confirmation ? (
