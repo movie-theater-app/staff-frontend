@@ -14,8 +14,9 @@ h1 {
   color: white;
 }
 
-.form h3 {
-  margin: 0.8rem;
+.add-theatre-form h3 {
+  margin-top: 0.8rem;
+  margin-bottom: 0.7rem;
   color: rgb(255, 255, 255);
 }
 
@@ -36,7 +37,7 @@ h1 {
   align-items: center;
   gap: 0.8rem;
   margin-bottom: 1.2rem;
-  margin-top:1rem;
+  margin-top:0.5rem;
 }
 
 .auditoriums-section input {
@@ -50,13 +51,20 @@ h1 {
 .btn, .btn-add-auditorium {
   padding: 1rem;
   border-radius: 8px;
-  border: 1px solid rgb(62, 171, 175);
-  background-color: #308b97;
-  color: #fff;
+  background: linear-gradient(var(--btn-primary-top), var(--btn-primary-bottom));
+  color: var(--btn-text-light);
+  border: none !important;
   cursor: pointer;
   margin-right: 0.5rem;
   font-size: 1rem;
 }
+.btn {
+  font-size: 1rem !important;
+  margin: 1rem 0 !important;
+  padding: 1rem !important;
+  gap: 1rem !important;
+}
+
 .btn-add-auditorium {
     display: flex;
     margin-left: auto;
@@ -66,20 +74,21 @@ h1 {
 }
 
 .btn:hover, .btn-add-auditorium:hover {
-  background-color: #2d7d88;
+  background: linear-gradient(var(--btn-primary-hover-top), var(--btn-primary-hover-bottom));
 }
 
 .btn-remove {
-  background-color: #d13f2f;
+  background: linear-gradient(var(--btn-danger-top), var(--btn-danger-bottom));
   padding: 0.5rem;
   border-radius: 8px;
   border: none;
   color: #fff;
   cursor: pointer;
+  font-size: 0.8rem !important;
 }
 
 .btn-remove:hover {
-  background-color: #b93829;
+  background: linear-gradient(var(--btn-danger-hover-top), var(--btn-danger-hover-bottom));
 }
 
 button:disabled,

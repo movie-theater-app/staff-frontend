@@ -11,3 +11,7 @@
     gap: 1rem;
     cursor: pointer;
 }
+
+.add-movie-btn:hover {
+    background: linear-gradient(var(--btn-primary-hover-top), var( --btn-primary-hover-bottom));
+}
