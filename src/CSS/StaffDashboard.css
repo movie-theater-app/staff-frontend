@@ -39,11 +39,11 @@ html, body {
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  background-color: #3E7F88;
-  color: white;
+  background: linear-gradient(var(--btn-primary-top), var(--btn-primary-bottom));
+  color: var(--btn-text-light);
   font-size: 1rem;
 }
 
 .button:hover {
-  background-color: #007d93;
+  background: linear-gradient(var(--btn-primary-hover-top), var(--btn-primary-hover-bottom));
 }

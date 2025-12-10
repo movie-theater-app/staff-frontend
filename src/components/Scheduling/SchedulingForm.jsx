@@ -160,7 +160,7 @@ function SchedulingForm({movie, onScheduled}) {
 
     return (
         <div className="scheduling-div">
-            <h2>ADD/EDIT THE SCHEDULE OF THE MOVIE</h2>
+            <h1 style={{margin: "3rem"}}>Add / Edit the schedule of the movie</h1>
             <form onSubmit={formHandler}>
                 <div className="form-field">
                     <label htmlFor="date-input">Select Dates</label>

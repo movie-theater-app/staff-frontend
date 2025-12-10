@@ -55,12 +55,12 @@
   cursor: pointer;
   border-radius: 6px;
   border: none;
-  background-color: rgb(154, 219, 228);
-  border: 1px solid white;
+  background: linear-gradient(var(--btn-primary-top), var(--btn-primary-bottom));
+  color: var(--btn-text-light);
 }
 
 .login-box button:hover, .login-box button:active {
-  background-color: rgb(255, 255, 255);
+  background: linear-gradient(var(--btn-primary-hover-top), var(--btn-primary-hover-bottom));
 }
 
 .error-text {
