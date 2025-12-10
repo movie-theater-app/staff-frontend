@@ -141,3 +141,62 @@ button:disabled,
   cursor: not-allowed;
   background-color: #66b1bb !important;
 }
+
+@media (max-width: 1650px) {
+
+  .edit-theatre-container {
+    grid-template-columns: 1fr 1.4fr;
+    gap: 0.2rem;
+    max-width: 100%;
+    padding: 1rem;
+    justify-content: center;
+  }
+
+  .right-panel {
+    margin: 0 1rem;      
+    max-width: 90%;     
+  }
+  .left-panel {
+    max-width: 350px; 
+    width: 90%;     
+  }
+}
+
+@media (max-width: 1250px) {
+
+  .edit-theatre-container {
+    grid-template-columns: 1fr 1fr; 
+    justify-content: center;
+  }
+
+  .left-panel, .right-panel {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 1100px) {
+
+  .edit-theatre-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .left-panel,
+  .right-panel {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .dropdown {
+    width: 100%;     
+  }
+
+  .right-panel {
+    margin-top: 3rem;
+    max-height: auto;
+  }
+}

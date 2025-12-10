@@ -176,3 +176,42 @@
 }
 
 
+/* Laptop / medium screens */
+@media (max-width: 2200px) {
+
+  .add-movie-div {
+    flex-direction: column;      
+    gap: 2rem;
+  }
+
+  .add-movie-form-div,
+  .search-movie-div {
+    margin: 2rem auto;           
+    max-width: 500px;
+    width: 90%;
+  }
+
+  .search-movie-div {
+    height: auto;
+    padding: 1.5rem;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .search-movie-list {
+    max-height: 300px;           
+    overflow-y: auto;
+  }
+
+.add-movie-div {
+  display: flex;
+  flex-direction: row;      
+  gap: 1rem;
+  justify-content: center;
+}
+.search-movie-div .add-movie-scratch-btn {
+    margin: 3rem 3rem 1rem -8rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+}
