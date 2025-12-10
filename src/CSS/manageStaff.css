@@ -88,25 +88,25 @@
   margin-bottom: 2rem;
   border: none;
   cursor: pointer;
-  font-weight: bold;
+  font-size: 1rem;
   width: 80%;
 }
 
 .staff-form button {
-  background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
-  color: white;
+  background: linear-gradient(to bottom, var(--btn-primary-top), var(--btn-primary-bottom));
+  color: var(--btn-text-light);
 }
 .staff-form button:hover {
-  background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
+  background: linear-gradient(to bottom, var(--btn-primary-hover-top), var(--btn-primary-hover-bottom));
 }
 .staff-form button.cancel-btn {
-  background: linear-gradient(to bottom, #c93434 15%, #911c1c 100%);
-  color: white;
+  background: linear-gradient(to bottom, var(--btn-danger-top), var(--btn-danger-bottom));
+  color: var(--btn-text-light);
   margin-bottom: 2rem;
   margin-top: -1.5rem;
 }
 .staff-form button.cancel-btn:hover {
-  background: linear-gradient(to bottom, #bd2b2b 15%, #831616 100%);
+  background: linear-gradient(to bottom, var(--btn-danger-hover-top), var(--btn-danger-hover-bottom));
 }
 
 .staff-list {
@@ -132,18 +132,48 @@
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.staff-list li span {
+  flex: 1;           
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;      
+  overflow: auto;  
+}
+
+.staff-list .button-group {
+  display: flex;
+}
+
 .staff-list button {
-  background: linear-gradient(to bottom, #2fb2b6 10%, #135c66 100%);
-  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 0.3rem 0.7rem;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   transition: 0.2s;
   margin-left: 1rem;
 }
 
+/* Edit-btn */
+.staff-list .button-group button:first-child {
+  background: linear-gradient(to bottom, var(--btn-primary-top), var(--btn-primary-bottom));
+  color: var(--btn-text-light);
+}
+.staff-list .button-group button:first-child:hover {
+  background: linear-gradient(to bottom, var(--btn-primary-hover-top), var(--btn-primary-hover-bottom));
+}
+
+/* Delete-btn */
+.staff-list .button-group button:nth-child(2) {
+  background: linear-gradient(to bottom, var(--btn-danger-top), var(--btn-danger-bottom));
+  color: var(--btn-text-light);
+  font-size: 15px;       
+  font-weight: bold;
+  padding: 0.2rem 0.4rem !important;
+}
+.staff-list .button-group button:nth-child(2):hover {
+  background: linear-gradient(to bottom, var(--btn-danger-hover-top), var(--btn-danger-hover-bottom));
+}
 .staff-edit-form {
   display: flex;
   gap: 0.5rem;
@@ -159,7 +189,4 @@
   border: 1px solid #71cfcb;
 }
 
-.staff-edit-form button {
-  padding: 0.4rem 0.7rem;
-  font-size: 13px;
-}
+

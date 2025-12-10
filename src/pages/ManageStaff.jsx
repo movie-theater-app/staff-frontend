@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { getAllStaff, createStaff, updateStaff } from "../api-logic/staffApi";
+import { getAllStaff, createStaff, updateStaff, deleteStaff } from "../api-logic/staffApi";
 import StaffForm from "../components/Staff/StaffForm";
 import StaffList from "../components/Staff/StaffList";
 import "../CSS/manageStaff.css"
@@ -9,6 +9,12 @@ export default function ManageStaff() {
   const [staffList, setStaffList] = useState([]);
   const [editingStaff, setEditingStaff] = useState(null);
   const [searchMember, setSearchMember] = useState("");
+
+  // filter staff based on name or email
+  const filteredStaff = staffList.filter(staff =>
+    staff.name.toLowerCase().includes(searchMember.toLowerCase()) ||
+    staff.email.toLowerCase().includes(searchMember.toLowerCase())
+  );
 
   // fetch staff members on component mount
   useEffect(() => {
@@ -43,12 +49,18 @@ export default function ManageStaff() {
       console.error("Failed to update staff:", err);
     }
   }
-
-  // filter staff based on name or email
-  const filteredStaff = staffList.filter(staff =>
-    staff.name.toLowerCase().includes(searchMember.toLowerCase()) ||
-    staff.email.toLowerCase().includes(searchMember.toLowerCase())
-  );
+  // delete staff member
+  async function handleDelete(id) {
+    const ok = window.confirm("Are you sure you want to delete this staff member?");
+    if (!ok) return;
+    
+    try {
+    await deleteStaff(id);
+    setStaffList(prev => prev.filter(staff => staff.id !== id));
+  } catch (err) {
+    console.error("Failed to delete staff:", err);
+  }
+}
 
   return (
     <div>
@@ -67,6 +79,7 @@ export default function ManageStaff() {
                 <StaffList
                     staff={filteredStaff}
                     onEditClick={(staff) => setEditingStaff(staff)}
+                    onDeleteClick={handleDelete}
                 />
             </div>
             <div className="staff-form-container">
