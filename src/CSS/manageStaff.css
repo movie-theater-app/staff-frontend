@@ -113,6 +113,8 @@
   list-style: none;
   padding: 0;
   width: 100%;
+  overflow: auto;
+  max-height: 610px;
 }
 
 .staff-list li {
@@ -124,8 +126,9 @@
   align-items: center;
   margin-bottom: 0.8rem;
   transition: 0.2s;
-  white-space: nowrap;      
-  overflow: auto;         
+  white-space: normal;      
+  overflow-y: hidden;
+  overflow-x: hidden;       
 }
 
 .staff-list li:hover {
@@ -135,9 +138,6 @@
 .staff-list li span {
   flex: 1;           
   text-align: left;
-  white-space: nowrap;
-  text-overflow: ellipsis;      
-  overflow: auto;  
 }
 
 .staff-list .button-group {
@@ -169,24 +169,29 @@
   color: var(--btn-text-light);
   font-size: 15px;       
   font-weight: bold;
-  padding: 0.2rem 0.4rem !important;
+  padding: 0.1rem 0.4rem !important;
 }
 .staff-list .button-group button:nth-child(2):hover {
   background: linear-gradient(to bottom, var(--btn-danger-hover-top), var(--btn-danger-hover-bottom));
 }
-.staff-edit-form {
+.staff-form {
   display: flex;
-  gap: 0.5rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
   align-items: center;
+  min-height: 400px;
 }
 
-.staff-edit-form input,
-.staff-edit-form select {
-  padding: 0.4rem 0.6rem;
-  font-size: 13px;
+.staff-form input,
+.staff-form select {
+  padding: 0.6rem 0.7rem;
+  font-size: 16px;
   border-radius: 5px;
   border: 1px solid #71cfcb;
+}
+.staff-form select option {
+  background-color: white;
+  color: #0d2845f8 !important;
 }
 
 
