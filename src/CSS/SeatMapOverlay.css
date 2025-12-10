@@ -13,16 +13,16 @@
 }
 
 .overlay-content {
-  background: #fafafadc;
+  background: #fafafacc;
   border: 1px solid rgb(72, 177, 190);
   color: white;
-  padding: 4rem;
+  padding: 3rem;
   border-radius: 8px;
   width: 80%;
   max-height: 90vh; 
   overflow-y: auto; 
   overflow-x: auto; 
-  max-width: 1500px;
+  max-width: 1400px;
   text-align: center;
   position: relative;
   box-shadow: 2px 3px 35px rgba(62, 126, 131, 0.692);
@@ -47,7 +47,14 @@
 .status-box {
   width: 20px;
   height: 20px;
-  border-radius: 4px;
+  border-radius: 50%;
+}
+.wheelchair-icon {
+  display: inline-flex;     
+  width: 23px;
+  height: 23px;
+  border-radius: 50% !important;
+  border: 1px solid rgb(138, 138, 138);
 }
 .screen-label {
   font-size: 1rem;
@@ -129,28 +136,31 @@
   right: 25px;
   background: rgb(224, 37, 37) !important;
   border: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: white;
   cursor: pointer;
 }
 
 .seat-map-grid {
   display: grid;
-  gap: 5px;
+  gap: 1px;
   justify-content: center;
   margin-top: 25px;
   grid-template-columns: repeat(var(--max-columns), 40px);
 }
 
 .seat {
-  width: 35px;
-  height: 35px;
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .seat.selected {
@@ -209,7 +219,7 @@
     font-size: 0.9rem;
     right: 15px !important;
     margin-top: 10px !important;
-    padding: 0.5rem 1rem !important;
+    padding: 0.5rem 0.8rem !important;
   }
   .screen-label {
     font-size: 0.8rem;
@@ -278,7 +288,7 @@
     font-size: 0.7rem;
     margin-right: 0px !important;
     margin-top: 10px !important;
-    padding: 0.3rem 0.5rem !important;
+    padding: 0.3rem 0.4rem !important;
   }
   .screen-label {
     font-size: 0.8rem;
