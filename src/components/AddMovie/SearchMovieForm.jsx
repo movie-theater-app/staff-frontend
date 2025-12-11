@@ -36,7 +36,6 @@ function SearchMovieForm({getMovieByID} ) {
                     </li>
                 })}
             </ul>
-            <button className="add-movie-scratch-btn" onClick={() => getMovieByID('')}>Add New Movie From Scratch</button>
         </div>
     );
 }

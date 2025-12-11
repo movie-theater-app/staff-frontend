@@ -8,8 +8,6 @@
     --color-form-input: #292929;
     --bg-form-btn: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
     --bg-form-btn-hover: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
-    --primary:#b8f4f8;
-    --button: #5ea9b8;
 }
 
 .add-movie-form-div {
@@ -58,8 +56,13 @@
     text-align: start;
     padding: 0.5rem;
 }
-
-.add-movie-div button {
+.btn-movie-form-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.add-movie-form-div button {
     background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
     border: 1px solid black;
     border-radius: 12px;
@@ -67,13 +70,17 @@
     align-self: center;
     color: white;
     cursor: pointer;
-}
-.add-movie-div button:hover{
-    background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
-}
-.add-movie-btn {
     padding: 1rem 2rem;
     font-size: 1rem;
+}
+.add-movie-form-div button:hover{
+    background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
+}
+.add-movie-form-div .empty-btn {
+    background: linear-gradient(to bottom, #c93434 15%, #911c1c 100%);
+}
+.add-movie-form-div .empty-btn:hover {
+    background: linear-gradient(to bottom, #bd2b2b 15%, #831616 100%);
 }
 .add-movie-form-div textarea {
     font-family: inherit;
@@ -125,7 +132,7 @@
 
 #movie-search-input {
     background-color: var(--bg-search);
-    border: 1px solid var(--border-form-input);
+    border: 1px solid var(--border-search);
     font-size: 1rem;
     width: 100%;
     border-radius: 8px;
@@ -134,10 +141,17 @@
 }
 
 .search-movie-div button {
+    background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
     padding: 0.5rem 1rem;
+    border-radius: 8px;
     font-size: 0.75rem;
     cursor: pointer;
 }
+
+.search-movie-div button:hover {
+    background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
+}
+
 .search-movie-div .search-btn {
     font-size: 1rem;
     cursor: pointer;

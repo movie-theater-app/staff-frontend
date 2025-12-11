@@ -127,9 +127,10 @@ function MovieForm({movieData, handleSubmit, getMovieByID}) {
 
 
 
-
-                <button className="Empty-button" type="button" onClick={() => getMovieByID('')}>Empty Data</button>
-                <button className="add-movie-btn" type="submit">Save</button>
+                <div className="btn-movie-form-div">
+                    <button className="empty-btn" type="button" onClick={() => getMovieByID('')}>Empty Data</button>
+                    <button className="add-movie-btn" type="submit">Save</button>
+                </div>
             </form>
         </div>
     );

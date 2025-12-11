@@ -1,7 +1,16 @@
-:root {
-    --primary:#b8f4f8;
-    --button: #5ea9b8;
+:root{
+    --list-background-color:rgba(255, 255, 255, 0.1);
 }
+
+.schedule-parent-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10%;
+    gap: 50px;
+}
+
 .scheduling-container {
     width: 100vw;
     height: 100vh;
@@ -10,15 +19,16 @@
     align-items: center;
 }
 .scheduling-container button {
-    background-color: var(--button);
-    border: 1px solid black;
+    background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     align-self: center;
     color: white;
     cursor: pointer;
     padding: 1rem 2rem;
     font-size: 1rem;
+}
+.scheduling-container button:hover {
+    background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
 }
 .scheduling-div {
     margin-top: 2rem;
@@ -29,7 +39,8 @@
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    background-color: var(--primary);
+    background-color: var(--bg-form);
+
     padding: 2rem;
     border-radius: 8px;
     max-width: 600px;
@@ -46,9 +57,13 @@
 }
 .scheduling-div .submit-button {
     padding: 1rem;
-    background-color: var(--button);
+    background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
     border-radius: 8px;
     color: white;
+    cursor: pointer;
+}
+.scheduling-div .submit-button:hover {
+    background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
 }
 
 .times-container{
@@ -59,27 +74,43 @@
 
 
 /* SCHEDULING LIST */
+.schedule-confirmation-div {
+    width: 489px;
+}
 
+.change-theater-btn {
+    background-color: var(--bg-search);
+    padding: 1rem;
+    color: white;
+    border: 1px solid var(--border-search)
+}
 .schedule-theaters-cont {
-    margin-top: 5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
     align-items: start;
     justify-content: start;
-    color:white;
-    gap: 125px;
+    gap: 25px;
+    height: 550px;
+}
+.schedules-cont {
+    width: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+.theaters-cont {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.theaters-cont button {
+    color: #292929;
+    cursor: pointer;
 }
 .schedule-list-div {
-    justify-items: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-.schedule-list-div ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width:100%;
     gap: 1rem;
     list-style-type: none;
     margin-top: 25px;
@@ -88,12 +119,12 @@
 .schedule-li {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 2rem;
-    width: max-content;
-    background-color: var(--primary);
-    color: black;
+    width: 100%;
+    background-color: var(--list-background-color);
+    color: white;
     padding: 6px 12px;
     border-radius: 10px;
     border: 1px solid black;
@@ -101,8 +132,11 @@
 
 .schedule-li button{
     padding: 5px 7.5px;
-    background-color: var(--button);
+    background: linear-gradient(to bottom, #c93434 15%, #911c1c 100%);
     color: black;
     border-radius: 10px;
     cursor: pointer;
+}
+.schedule-li button:hover{
+    background: linear-gradient(to bottom, #bd2b2b 15%, #831616 100%);
 }
