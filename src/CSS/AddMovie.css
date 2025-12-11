@@ -119,6 +119,9 @@
     margin: 3rem -16rem 3rem 45rem;
     max-width: 600px;
 }
+.search-movie-div button {
+    color: white;
+}
 .search-movie-list{
     display: flex;
     justify-content: start;
