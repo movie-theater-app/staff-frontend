@@ -87,12 +87,20 @@ h1 {
 }
 
 .form-field input, .auditorium-fields input {
+  background-color: white;
+  color: black;
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
   border: 1px solid #4aa0af;
   font-size: 1rem;
   margin-bottom: 0.4rem;
 }
+
+.auditoriums-section input {
+  background-color: white;
+  color: black;
+}
+
 .btn-add {
   padding: 0.5rem;
   border-radius: 8px;
