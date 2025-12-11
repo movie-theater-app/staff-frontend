@@ -1,7 +1,7 @@
 .choose-movie-edit {
     padding: 5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    grid-template-columns: repeat(auto-fill, 185px);
     color:white;
     gap: 20px;
 }
@@ -11,6 +11,7 @@
     gap: 1rem;
     cursor: pointer;
     max-width: 185px;
+    justify-content: space-between;
 }
 
 .add-movie-btn:hover {
