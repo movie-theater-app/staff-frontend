@@ -177,6 +177,7 @@ function Statistics() {
                     <div className="movie-filter-row">
                         <div className="filter-with-search">
                             <div>
+                                <p className='tooltip'>Type in the movie name and then select from the list</p>
                                 <input 
                                     type="text" 
                                     placeholder="Search movies..."
@@ -238,7 +239,7 @@ function Statistics() {
                 {loading ? (
                     <p>Loading statistics...</p>
                 ) : aggregatedStats.length === 0 ? (
-                    <p>No statistics available</p>
+                    <p className="no-statistics">No statistics available</p>
                 ) : (
                     <table className="statistics-table">
                         <thead>
