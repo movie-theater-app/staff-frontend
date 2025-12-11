@@ -166,7 +166,8 @@ button:disabled,
   }
   .left-panel {
     max-width: 350px; 
-    width: 90%;     
+    width: 90%;   
+    margin: 0 4rem;     
   }
 }
 
