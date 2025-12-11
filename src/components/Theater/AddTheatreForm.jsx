@@ -1,6 +1,6 @@
 import react from "react";
 import { useState } from "react";
-import "../CSS/Form.css";
+import "../../CSS/Form.css";
 
 export default function AddTheatreForm({ onSubmit }) {
 // form field values are stored and updated, auditoriums stored as array of objects

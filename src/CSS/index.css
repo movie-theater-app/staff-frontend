@@ -10,6 +10,22 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+:root {
+  --btn-primary-top: #3cbfc4;
+  --btn-primary-bottom: #135c66;
+
+  --btn-primary-hover-top: #289a9e;
+  --btn-primary-hover-bottom: #155e68;
+
+  --btn-danger-top: #c93434;
+  --btn-danger-bottom: #911c1c;
+
+  --btn-danger-hover-top: #bd2b2b;
+  --btn-danger-hover-bottom: #831616;
+
+  --btn-text-light: #ffffff;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;

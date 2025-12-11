@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AddTheatreForm from "../components/AddTheatreForm";
+import AddTheatreForm from "../components/Theater/AddTheatreForm";
 import Navbar from "../components/Navbar";
 import { addTheatre, addAuditorium } from "../api-logic/addTheatreApi";
 import { createSeats } from "../api-logic/seatApi";
@@ -65,27 +65,54 @@ export default function AddTheatre() {
   const handleViewSeats = (auditorium) => {
     setAuditoriumId(auditorium.id);
     setShowOverlay(true);
-    navigate(`/add-theatre/seat-map/${auditorium.id}`);
+    //navigate(`/add-theatre/seat-map/${auditorium.id}`);
   };
   // for adding new theatre button
   const handleAddNew = () => setConfirmation(null);
+  
+  // edit theatre button
+  const handleEditTheatre = () => {
+    navigate('/edit-theatre');
+  }; 
 
   return (
     <div>
         <Navbar showLinks={true}/>
 
-        {!confirmation && (
-        <h1 style={{ color: "white", padding: "4rem 0 1rem 0" }}>Add new theatre</h1>
-      )}
+        {!confirmation && <h1>Add new theatre</h1>}
 
-        {confirmation ? (
-        <div className="confirmation">
+    {confirmation ? (
+      <div className="confirmation">
+        {/* LEFT SIDE: success message + btns */}
+        <div className="confirmation-content">
           <h2>Theatre added successfully!</h2>
-          <h3>Name:</h3> <p><strong>{confirmation.theatre.name}</strong></p>
-          <h3>Address:</h3> <p><strong>{confirmation.theatre.address}</strong></p>
-          <h3>Contact (phone):</h3><p><strong>{confirmation.theatre.contact_information}</strong></p>
 
-           {confirmation.auditoriums.length > 0 && (
+          <div className="confirmation-actions">
+            <button className="btn" onClick={handleEditTheatre}>
+              Edit theatre
+            </button>
+            <button className="btn" onClick={handleAddNew}>
+              Add new theatre
+            </button>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE: theater info */}
+        <div className="confirmation-details">
+          <div className="detail-row">
+            <h3>Name:</h3>
+            <strong>{confirmation.theatre.name}</strong>
+          </div>
+          <div className="detail-row">
+            <h3>Address:</h3>
+            <strong>{confirmation.theatre.address}</strong>
+          </div>
+          <div className="detail-row">
+            <h3>Contact (phone):</h3>
+            <strong>{confirmation.theatre.contact_information}</strong>
+          </div>
+
+          {confirmation.auditoriums.length > 0 && (
             <div className="auditoriums">
               <h3>Auditoriums:</h3>
               <ul>
@@ -101,6 +128,7 @@ export default function AddTheatre() {
                   </li>
                 ))}
               </ul>
+
               {showOverlay && (
                 <SeatMapOverlay
                   auditoriumId={auditoriumId}
@@ -112,19 +140,11 @@ export default function AddTheatre() {
               )}
             </div>
           )}
-
-            <button
-              className="btn"
-              onClick={() => alert("Edit feature coming soon!")}
-            >
-              Edit theatre
-            </button>
-            <button className="btn" onClick={handleAddNew}>Add new theatre</button>
         </div>
-
-      ) : (
-        <AddTheatreForm onSubmit={handleSubmit} />
-      )}
-    </div>
+      </div>
+    ) : (
+      <AddTheatreForm onSubmit={handleSubmit} />
+    )}
+  </div>
   )
 };

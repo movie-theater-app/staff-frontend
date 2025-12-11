@@ -22,8 +22,9 @@ function ChooseMovieEdit({chooseMovie}) {
     return (
         <div style={{
             color: "white",
+            marginTop: "3rem"
         }}>
-            <h2>SELECT MOVIE TO EDIT</h2>
+            <h1>Select movie to edit</h1>
             <div className="choose-movie-edit">
                 {movies.map((movie) => (
                     <div className="choose-movie-div" key={movie.id} onClick={() => goToMovie(movie.id)}>

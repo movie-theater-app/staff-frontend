@@ -10,6 +10,7 @@ import Logout from "./components/Logout.jsx";
 import ManageStaff from "./pages/ManageStaff.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Statistics from "./pages/Statistics.jsx";
+import EditTheatre from './pages/EditTheatre.jsx';
 
 
 function App() {
@@ -59,6 +60,11 @@ function App() {
             <Statistics />
           </ProtectedRoute>} 
         /> 
+        <Route path="/edit-theatre" element={
+        <ProtectedRoute>
+          <EditTheatre />
+        </ProtectedRoute>} 
+      />
     </Routes>
   )
 }

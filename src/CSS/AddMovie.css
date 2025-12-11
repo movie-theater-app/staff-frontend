@@ -16,8 +16,8 @@
     padding: 2rem;
     border-radius: 8px;
     max-width: 600px;
-    max-height: 710px;
-    margin: 2rem auto;
+    max-height: 800px;
+    margin: 3rem auto;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     align-items: center;
     color: black;
@@ -29,12 +29,12 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
+    justify-content:center;
 }
 .add-movie-form-div label {
     font-weight: bold;
     font-size: 1.1rem;
 }
-
 
 .form-field {
     gap: 0.25rem;
@@ -65,13 +65,28 @@
 .add-movie-form-div button {
     background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
     border: 1px solid black;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     align-self: center;
     color: white;
     cursor: pointer;
     padding: 1rem 2rem;
     font-size: 1rem;
+}
+.add-movie-div button:hover{
+    background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
+}
+.add-movie-btn, .Empty-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    margin: 3rem 1rem;
+    border-radius: 8px;
+    border: none !important;
+    background: linear-gradient(var(--btn-primary-top), var(--btn-primary-bottom));
+    color: var(--btn-text-light);
+}
+.Empty-button {
+    background: linear-gradient(var(--btn-danger-top), var(--btn-danger-bottom)) !important;
 }
 .add-movie-form-div button:hover{
     background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
@@ -95,13 +110,13 @@
 /* THIS NEXT PART IS FOR SEARCH MOVIE FORM */
 
 .search-movie-div {
-    height: 710px;
+    height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
     padding: 2rem 2rem 3rem 2rem;
-    margin: 2rem auto;
+    margin: 3rem -16rem 3rem 45rem;
     max-width: 600px;
 }
 .search-movie-list{
@@ -163,7 +178,7 @@
 }
 
 .search-movie-div .add-movie-scratch-btn {
-    margin-top: 2rem;
+    margin: 2rem 3rem 1rem -13rem;
     padding: 1rem 2rem;
     font-size: 1rem;
 }
@@ -178,3 +193,42 @@
 }
 
 
+/* Laptop / medium screens */
+@media (max-width: 2200px) {
+
+  .add-movie-div {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .add-movie-form-div,
+  .search-movie-div {
+    margin: 2rem auto;
+    max-width: 500px;
+    width: 90%;
+  }
+
+  .search-movie-div {
+    height: auto;
+    padding: 1.5rem;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .search-movie-list {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+.add-movie-div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+}
+.search-movie-div .add-movie-scratch-btn {
+    margin: 3rem 3rem 1rem -8rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+}

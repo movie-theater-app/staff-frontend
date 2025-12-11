@@ -36,3 +36,9 @@ export async function changePassword(currentPassword, newPassword) {
         body: JSON.stringify({currentPassword, newPassword})
     })
 }
+// delete staff (by admin)
+export async function deleteStaff(id) {
+    return await FetchWithToken(`/staff/${id}`, {
+        method: 'DELETE'
+    })
+}

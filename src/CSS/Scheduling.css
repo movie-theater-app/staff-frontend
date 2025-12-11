@@ -39,10 +39,10 @@
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    background-color: var(--bg-form);
-
+    background-color: rgba(255, 255, 255, 0.13);
     padding: 2rem;
     border-radius: 8px;
+    border: 1px solid #55999e;
     max-width: 600px;
     margin: 2rem auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -50,22 +50,29 @@
     flex: 1;
     height: fit-content;
 }
+
 .scheduling-div form label {
     display: block;
     margin-bottom: 15px;
     align-self: center;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 .scheduling-div .submit-button {
     padding: 1rem;
-    background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
+    background: linear-gradient(var(--btn-primary-top), var(--btn-primary-bottom));
+    color: var(--btn-text-light);
     border-radius: 8px;
-    color: white;
+    border: none;
+    font-size: 0.9rem;
     cursor: pointer;
 }
 .scheduling-div .submit-button:hover {
     background: linear-gradient(to bottom, #289a9e 15%, #155e68 100%);
 }
-
+.scheduling-div .submit-button:hover {
+    background: linear-gradient(var(--btn-primary-hover-top), var( --btn-primary-hover-bottom));
+}
 .times-container{
     display: flex;
     flex-direction: row;
@@ -127,16 +134,18 @@
     color: white;
     padding: 6px 12px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 2px solid #55999e;
 }
 
 .schedule-li button{
     padding: 5px 7.5px;
-    background: linear-gradient(to bottom, #c93434 15%, #911c1c 100%);
-    color: black;
+    background: linear-gradient(var(--btn-danger-top), var(--btn-danger-bottom));
+    color: var(--btn-text-light);
     border-radius: 10px;
     cursor: pointer;
+    border: none;
 }
-.schedule-li button:hover{
-    background: linear-gradient(to bottom, #bd2b2b 15%, #831616 100%);
+
+.schedule-li button:hover {
+    background: linear-gradient(var(--btn-danger-hover-top), var(--btn-danger-hover-bottom)) !important;
 }
