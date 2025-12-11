@@ -5,7 +5,7 @@
   gap: 2rem;
   justify-content: space-between;
   align-items: flex-start;
-  background: linear-gradient(180deg, #bdecf5 10%, #83dae7 55%, #81d4df 100%); 
+  background: linear-gradient(180deg, #9cd4df 10%, #72c6d3 55%, #66bcc7 100%); 
   max-width: 800px;
   max-height: 700px;             
   margin: 4rem auto;
@@ -29,9 +29,10 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin: 0.4rem 0 0 2rem;
+  margin: 0.4rem 0 0 1rem;
   text-align: left;
 }
+
 .auditoriums {
   margin-top: 1.5rem;
 }
@@ -41,8 +42,9 @@
 }
 
 .confirmation-details .detail-row strong {
-  font-weight: 550;
   color: #00384f;
+  font-weight: 600;
+  font-size: 1rem;
 }
 .confirmation-actions {
   display: flex;
@@ -58,7 +60,7 @@
 
 .view-seat-map {
   border: none;
-  background-color: #0097b2;
+  background: linear-gradient(180deg, #36b7ca, #007d93);
   color: white;
   font-weight: 500;
   padding: 0.5rem 1rem;
