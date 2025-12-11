@@ -175,6 +175,7 @@
 }
 
 .search-movie-div .search-btn {
+    border: none;
     font-size: 1rem;
     cursor: pointer;
     width: 100%;
