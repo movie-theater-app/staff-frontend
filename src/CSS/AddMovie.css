@@ -50,6 +50,10 @@
     gap: 1rem;
     justify-content: space-between;
 }
+.form-grouping > * {
+    flex: 1;
+    min-width: 0;
+}
 
 #description-input {
     min-height: 100px;
