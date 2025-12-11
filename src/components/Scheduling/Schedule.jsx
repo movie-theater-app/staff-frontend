@@ -11,7 +11,7 @@ function Schedule({movie}) {
     }
     return (
         <div>
-            <h2 style={{color: "white"}}>ADD/EDIT THE SCHEDULE OF THE MOVIE</h2>
+            <h1 style={{color: "white", marginTop: "3rem"}}>Add / Edit the schedule of the movie</h1>
             <div className="schedule-parent-div">
                 <SchedulingForm movie={movie} onScheduled={reloadPage} />
                 <ScheduleList movie={movie} reload={reload} />

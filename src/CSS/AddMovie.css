@@ -68,7 +68,7 @@
 }
 .add-movie-form-div button {
     background: linear-gradient(to bottom, #2fb2b6 15%, #135c66 100%);
-    border: 1px solid black;
+    border: none;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     align-self: center;
@@ -183,6 +183,7 @@
 .search-movie-list .movie-li-btn {
     max-width: 100px;
     margin: 0;
+    border: none;
 }
 
 .search-movie-div .add-movie-scratch-btn {
