@@ -10,6 +10,7 @@ import {
 } from "../../api-logic/getTheatersApi.jsx";
 import { importSchedule } from "../../api-logic/schedulingAPI.jsx";
 import "../../CSS/Scheduling.css"
+import schedule from "./Schedule.jsx";
 
 
 function SchedulingForm({movie, onScheduled}) {
@@ -42,6 +43,7 @@ function SchedulingForm({movie, onScheduled}) {
                         movie_id: movie.id,
                         theater_id: a.theater_id,
                         auditorium_id: a.id,
+                        auditorium_name: a.name,
                         screening_date: dateToSend,
                         start_time: formatTime(startTime),
                         end_time: formatTime(endTime),
@@ -52,18 +54,40 @@ function SchedulingForm({movie, onScheduled}) {
         }
         await createSchedules();
 
-        try {
-            await Promise.all(
-                newSchedules.map((schedule) => importSchedule(schedule)),
-            );
-        } catch (error) {
-            console.error("Failed to create some schedules:", error);
+        const conflictSchedules = [];
 
+        for (const schedule of newSchedules) {
+            try {
+                await importSchedule(schedule);
+            } catch (error) {
+                if (error.message.includes("Schedule conflict")) {
+                    conflictSchedules.push(schedule);
+                } else {
+                    console.error("Unexpected error creating schedule:", error);
+                }
+            }
         }
+
+        if (conflictSchedules.length > 0) {
+            const message = conflictSchedules
+                .map((s) =>
+                    `In auditorium: ${s.auditorium_name} on ${s.screening_date} from ${alertTimeFormat(s.start_time)} to ${alertTimeFormat(s.end_time)}`
+                )
+                .join("\n");
+
+            alert("These schedules could not be created:\n\n" + message);
+        }
+
 
         if(onScheduled) onScheduled();
 
     }
+    function alertTimeFormat(time) {
+        if (!time) return "";
+        const [hour, minute] = time.split(":");
+        return `${hour}:${minute.padStart(2, "0")}`;
+    }
+
 
     function formatTime(time) {
         const timeZoneValue = time.getTimezoneOffset() >= 0 ? "-" : "+";
