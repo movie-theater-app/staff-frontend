@@ -66,15 +66,25 @@ function ScheduleList({movie, reload} ) {
 
     async function handleDelete (id) {
         await deleteSchedule(id);
-        setSchedulesForTheater();
+        await loadTheaterAndSchedule();
+        await setSchedulesForTheater();
     }
 
     useEffect(()=>{
-        loadTheaterAndSchedule();
+        async function asyncLoad() {
+            await loadTheaterAndSchedule();
+        }
+
+        asyncLoad();
     }, [movie, reload]);
 
     useEffect(() => {
-        setSchedulesForTheater();
+
+        async function asyncSet() {
+            await setSchedulesForTheater();
+        };
+
+        asyncSet();
     }, [actualTheater]);
 
     return (

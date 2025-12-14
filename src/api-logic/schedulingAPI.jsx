@@ -88,9 +88,6 @@ export async function deleteSchedule(id) {
         method: "DELETE",
     });
 
-    if(!response){
-        throw new Error(`Failed to delete schedule with id: ${id}`);
-    }
 }
 
 
