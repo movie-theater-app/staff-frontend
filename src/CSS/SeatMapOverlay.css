@@ -63,10 +63,10 @@
   font-weight: bold;
   text-align: center;
   color: rgb(0, 42, 66) !important;
-  background-color: white;
-  border: 1px solid green;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgb(0, 151, 151);
   padding: 0.2rem;
-  border-radius: 4px;
+  border-radius: 8px;
   margin-left: auto;
   margin-right: auto;
 }
